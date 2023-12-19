@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/system';
 import { Paper, Button, Container, TextField, Typography } from '@mui/material';
@@ -33,15 +33,16 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function CreateView() {
+export default function UpdateView() {
   const [name, setName] = useState('');
   const [email, setSubEmail] = useState('');
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_Link}create`, { name, email })
+      .put(`${API_Link}update/${id}`, { name, email })
       .then((res) => {
         console.log(res);
         navigate('/post');
@@ -54,7 +55,7 @@ export default function CreateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h2" gutterBottom>
-            Add Title
+            Update Data
           </Typography>
           <TextField
             label="Title"
@@ -75,7 +76,7 @@ export default function CreateView() {
             margin="normal"
           />
           <Button type="submit" variant="contained" color="success">
-            Submit
+            Update
           </Button>
         </StyledForm>
       </StyledPaper>

@@ -7,6 +7,7 @@ import {
   Table,
   Paper,
   Button,
+  Avatar,
   TableRow,
   TableHead,
   TableBody,
@@ -16,7 +17,7 @@ import {
 } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
-import { API_Link } from 'src/components/API/api';
+import { API_Link } from 'src/components/api/api';
 
 export default function PostPage() {
   const [title, setTitle] = useState([]);
@@ -27,6 +28,15 @@ export default function PostPage() {
       .then((res) => setTitle(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  const handleDelect = async (id) => {
+    try {
+      await axios.delete(`${API_Link}navbar/${id}`);
+      window.location.reload();
+    } catch (err) {
+      console.error('Error', err);
+    }
+  };
 
   return (
     <Container>
@@ -44,26 +54,44 @@ export default function PostPage() {
         </Button>
       </Stack>
       <Paper>
-        <Table>
+        <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
+              <TableCell>ID</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Sub Title</TableCell>
+              <TableCell>Image</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {title?.map((data, indx) => (
               <TableRow key={indx}>
-                <TableCell>{data.Name}</TableCell>
-                <TableCell>{data.Email}</TableCell>
+                <TableCell>{data._id}</TableCell>
+                <TableCell>{data._name}</TableCell>
+                <TableCell>{data._email}</TableCell>
+                <TableCell>
+                  {' '}
+                  <Avatar
+                    alt="photo"
+                    src="https://img.freepik.com/free-photo/subway-dark-atmosphere_23-2150914290.jpg?t=st=1702980079~exp=1702983679~hmac=b53ecfa896ee6d7cafacd751e0397f3fc863d50f3722947878abfb36779b2447&w=1380"
+                  />{' '}
+                </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`update/${data?.ID}`}
+                    to={`/update/${data.ID}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
+                  />
+                  <Button
+                    component={Link}
+                    sx={{ ml: 2 }}
+                    variant="contained"
+                    color="error"
+                    startIcon={<Iconify icon="ic:outline-delete" />}
+                    onClick={(e) => handleDelect(data.ID)}
                   />
                 </TableCell>
               </TableRow>

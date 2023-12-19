@@ -120,20 +120,20 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={8}>
           <AppConversionRates
-            title="Conversion Rates"
-            subheader="(+43%) than last year"
+            title="StackOverFlow Top Programming Language"
+            subheader="(+60%) than last year"
             chart={{
               series: [
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
+                { label: 'Ruby', value: 400 },
+                { label: 'PHP', value: 430 },
+                { label: 'Javascript', value: 448 },
+                { label: 'Typscript', value: 470 },
+                { label: 'Python', value: 540 },
+                { label: 'Rust', value: 580 },
+                { label: 'MySQL', value: 690 },
+                { label: 'MongoDB', value: 1100 },
+                { label: 'Raddis', value: 1200 },
+                { label: 'Dart', value: 1380 },
               ],
             }}
           />
@@ -141,13 +141,13 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentSubject
-            title="Current Subject"
+            title="Current Top Language"
             chart={{
-              categories: ['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math'],
+              categories: ['Python', 'TypeScript', 'JavaScript', 'GO', 'Rust', 'PHP'],
               series: [
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
+                { name: 'Python', data: [80, 50, 30, 40, 100, 20] },
+                { name: 'JavaScript', data: [20, 30, 40, 80, 20, 80] },
+                { name: 'Go', data: [44, 76, 78, 13, 43, 10] },
               ],
             }}
           />
