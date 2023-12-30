@@ -9,6 +9,8 @@ export const UserPage = lazy(() => import('src/pages/user'));
 export const CreatePage = lazy(() => import('src/pages/create'));
 export const PostPage = lazy(() => import('src/pages/post'));
 export const UpdatePage = lazy(() => import('src/pages/update'));
+export const ViewSocialInfo = lazy(() => import('src/pages/social-info'));
+export const CreateSocialInfo = lazy(() => import('src/pages/social-post'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -31,6 +33,8 @@ export default function Router() {
         { path: 'create', element: <CreatePage /> },
         { path: 'post', element: <PostPage /> },
         { path: 'update/:id', element: <UpdatePage /> },
+        { path: 'social', element: <ViewSocialInfo /> },
+        { path: 'social-create', element: <CreateSocialInfo /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],

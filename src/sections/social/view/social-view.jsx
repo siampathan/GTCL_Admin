@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   Stack,
   Table,
   Paper,
+  Avatar,
   Button,
   TableRow,
   TableHead,
@@ -18,21 +19,23 @@ import {
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
-export default function PostPage() {
+export default function SocialInfo() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${API_Link}header/`)
-      .then((res) => setItems(res.data.data))
-      .catch((err) => console.log(err));
+    getItems();
   }, []);
 
-  const handleDelect = async (id) => {
+  const getItems = async () => {
+    const response = await axios.get(`${API_Link}social/items`);
+    setItems(response.data);
+  };
+
+  const deleteItems = async (itemId) => {
     try {
-      await axios.delete(`${API_Link}delete/${id}`);
-      window.location.reload();
+      await axios.delete(`${API_Link}social/items/${itemId}`);
+      getItems();
     } catch (err) {
-      console.error('Error', err);
+      console.log(err);
     }
   };
 
@@ -43,7 +46,7 @@ export default function PostPage() {
 
         <Button
           component={Link}
-          to="/create"
+          to="/social-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -55,39 +58,37 @@ export default function PostPage() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Menu</TableCell>
-              <TableCell>Parent ID</TableCell>
-              <TableCell>Slug</TableCell>
-              <TableCell>Sort</TableCell>
-              <TableCell>Active</TableCell>
-              <TableCell>Is Title</TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Icon</TableCell>
+              <TableCell>Link</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items?.map((item) => (
-              <TableRow key={item._id}>
-                <TableCell> {item._menu} </TableCell>
-                <TableCell> {item._parentId} </TableCell>
-                <TableCell> {item._slug} </TableCell>
-                <TableCell> {item._sort} </TableCell>
-                <TableCell> {item._active} </TableCell>
-                <TableCell> {item._isTitle} </TableCell>
+            {items.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell> {item.name} </TableCell>
+                <TableCell>
+                  <Avatar alty={item.url} src={item.url} />
+                </TableCell>
+                <TableCell>
+                  <Link to={item.link}>{item.name}</Link>
+                </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/update/${item._id}`}
+                    to=""
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
                     component={Link}
-                    sx={{ ml: 2 }}
+                    sx={{ ml: 1 }}
                     variant="contained"
                     color="error"
+                    onClick={() => deleteItems(item.id)}
                     startIcon={<Iconify icon="ic:outline-delete" />}
-                    onClick={(e) => handleDelect(item._id)}
                   />
                 </TableCell>
               </TableRow>

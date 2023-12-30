@@ -34,43 +34,94 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function CreateView() {
-  const [name, setName] = useState('');
-  const [email, setSubEmail] = useState('');
+  const [menu, setMenu] = useState('');
+  const [parentId, setParentId] = useState('');
+  const [slug, setSlug] = useState('');
+  const [sort, setSort] = useState('');
+  const [active, setActive] = useState('');
+  const [title, setTitle] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(`${API_Link}create`, { name, email })
-      .then((res) => {
-        console.log(res);
-        navigate('/post');
-      })
-      .catch((err) => console.log(err));
+
+    try {
+      const postData = {
+        menu,
+        parentId,
+        slug,
+        sort,
+        active,
+        title,
+      };
+
+      await axios.post(`${API_Link}header/create`, postData);
+
+      navigate('/post');
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
   };
 
   return (
     <StyledContainer sx={containerStyles}>
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
-          <Typography variant="h2" gutterBottom>
-            Add Title
+          <Typography variant="h3" gutterBottom>
+            Create Data
           </Typography>
           <TextField
-            label="Title"
+            label="Menu"
             type="text"
-            placeholder="Enter Title"
+            placeholder="Enter Menu"
             variant="outlined"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setMenu(e.target.value)}
             fullWidth
             margin="normal"
           />
           <TextField
-            label="Email"
+            label="ParentID"
             type="text"
-            placeholder="Enter Sub Title"
+            placeholder="Enter ParentId"
             variant="outlined"
-            onChange={(e) => setSubEmail(e.target.value)}
+            onChange={(e) => setParentId(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+
+          <TextField
+            label="Slug"
+            type="text"
+            placeholder="Enter Slug"
+            variant="outlined"
+            onChange={(e) => setSlug(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Sort"
+            type="text"
+            placeholder="Enter Sort"
+            variant="outlined"
+            onChange={(e) => setSort(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Active"
+            type="text"
+            placeholder="Enter Active Status"
+            variant="outlined"
+            onChange={(e) => setActive(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Title"
+            type="text"
+            placeholder="Enter Title Status"
+            variant="outlined"
+            onChange={(e) => setTitle(e.target.value)}
             fullWidth
             margin="normal"
           />
