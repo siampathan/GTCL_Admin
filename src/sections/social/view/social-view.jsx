@@ -77,7 +77,7 @@ export default function SocialInfo() {
                 <TableCell>
                   <Button
                     component={Link}
-                    to=""
+                    to="/social-update"
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
