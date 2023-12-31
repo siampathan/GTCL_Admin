@@ -36,7 +36,7 @@ export default function Router() {
         { path: 'update/:id', element: <UpdatePage /> },
         { path: 'social', element: <ViewSocialInfo /> },
         { path: 'social-create', element: <CreateSocialInfo /> },
-        { path: 'social-update', element: <SocialUpdate /> },
+        { path: 'social/:id', element: <SocialUpdate /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
