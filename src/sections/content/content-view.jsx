@@ -6,7 +6,6 @@ import {
   Stack,
   Table,
   Paper,
-  Avatar,
   Button,
   TableRow,
   TableHead,
@@ -19,26 +18,26 @@ import {
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
-export default function SocialInfo() {
+export default function ContentView() {
   const [items, setItems] = useState([]);
+
   useEffect(() => {
     getItems();
   }, []);
 
   const getItems = async () => {
-    const response = await axios.get(`${API_Link}social/items`);
+    const response = await axios.get(`${API_Link}section/content`);
     setItems(response.data);
   };
 
   const deleteItems = async (itemId) => {
     try {
-      await axios.delete(`${API_Link}social/items/${itemId}`);
+      await axios.delete(`${API_Link}section/content/${itemId}`);
       getItems();
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -58,28 +57,36 @@ export default function SocialInfo() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
+              <TableCell>MenuId</TableCell>
+              <TableCell>Heading</TableCell>
+              <TableCell>Sub Heading</TableCell>
               <TableCell>Title</TableCell>
-              <TableCell>Icon</TableCell>
+              <TableCell>Sub Title</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Button</TableCell>
+              <TableCell>Serial</TableCell>
+              <TableCell>Status</TableCell>
               <TableCell>Link</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {items.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell> {item.name} </TableCell>
-                <TableCell>
-                  <Avatar alty={item.url} src={item.url} />
-                </TableCell>
-                <TableCell>
-                  <Link to={item.link} target="_blank">
-                    {item.name}
-                  </Link>
-                </TableCell>
+              <TableRow key={item._id}>
+                <TableCell> {item._menuid} </TableCell>
+                <TableCell> {item._heading} </TableCell>
+                <TableCell> {item._sub_heading} </TableCell>
+                <TableCell> {item._title} </TableCell>
+                <TableCell> {item._sub_title} </TableCell>
+                <TableCell> {item._description} </TableCell>
+                <TableCell> {item._button} </TableCell>
+                <TableCell> {item._link} </TableCell>
+                <TableCell> {item._serial} </TableCell>
+                <TableCell> {item._status} </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/social/${item.id}`}
+                    to=""
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
@@ -89,7 +96,7 @@ export default function SocialInfo() {
                     sx={{ ml: 1 }}
                     variant="contained"
                     color="error"
-                    onClick={() => deleteItems(item.id)}
+                    onClick={() => deleteItems(item._id)}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>

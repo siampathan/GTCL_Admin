@@ -11,13 +11,13 @@ const containerStyles = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '100vh',
+  height: '60vh',
 };
 
 const StyledContainer = styled(Container)(containerStyles);
 
 const paperStyles = {
-  width: '50%',
+  width: '80%',
   padding: (theme) => theme.spacing(3),
   borderRadius: (theme) => theme.spacing(1),
   boxShadow: 3,
