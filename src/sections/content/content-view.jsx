@@ -45,7 +45,7 @@ export default function ContentView() {
 
         <Button
           component={Link}
-          to="/social-create"
+          to="/content-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}

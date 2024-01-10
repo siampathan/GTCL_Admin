@@ -40,7 +40,7 @@ export default function Router() {
         { path: 'social-create', element: <CreateSocialInfo /> },
         { path: 'social/:id', element: <SocialUpdate /> },
         { path: 'content', element: <ContentPage /> },
-        { path: 'content-post', element: <ContentPost /> },
+        { path: 'content-create', element: <ContentPost /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
