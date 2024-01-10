@@ -57,21 +57,21 @@ export default function ContentView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>MenuId</TableCell>
+              <TableCell>Menu</TableCell>
               <TableCell>Heading</TableCell>
               <TableCell>Sub Heading</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Sub Title</TableCell>
               <TableCell>Description</TableCell>
               <TableCell>Button</TableCell>
+              <TableCell>Link</TableCell>
               <TableCell>Serial</TableCell>
               <TableCell>Status</TableCell>
-              <TableCell>Link</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => (
+            {items?.map((item) => (
               <TableRow key={item._id}>
                 <TableCell> {item._menuid} </TableCell>
                 <TableCell> {item._heading} </TableCell>
@@ -80,13 +80,17 @@ export default function ContentView() {
                 <TableCell> {item._sub_title} </TableCell>
                 <TableCell> {item._description} </TableCell>
                 <TableCell> {item._button} </TableCell>
-                <TableCell> {item._link} </TableCell>
+                <TableCell>
+                  <Link to={item._link} target="_blank">
+                    {item._link}
+                  </Link>
+                </TableCell>
                 <TableCell> {item._serial} </TableCell>
                 <TableCell> {item._status} </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to=""
+                    to={`/content/${item._id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}

@@ -1,18 +1,9 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/system';
-import {
-  Paper,
-  Select,
-  Button,
-  MenuItem,
-  TextField,
-  Container,
-  InputLabel,
-  Typography,
-} from '@mui/material';
+import { Paper, Button, Container, TextField, Typography } from '@mui/material';
 
 import { API_Link } from 'src/components/api/api';
 
@@ -42,7 +33,8 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function ContentPostView() {
+export default function ContentUpdateView() {
+  const [menuid, setMenuid] = useState('');
   const [heading, setHeading] = useState('');
   const [subHeading, setSubHeading] = useState('');
   const [title, setTitle] = useState('');
@@ -52,36 +44,14 @@ export default function ContentPostView() {
   const [link, setLink] = useState('');
   const [serial, setSerial] = useState('');
   const [status, setStatus] = useState('');
-  const [menuItems, setMenuItems] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState('');
+  const { _id } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getParentId();
-  }, []);
-
-  const getParentId = async () => {
-    try {
-      const response = await axios.get(`${API_Link}header`);
-      setMenuItems(response.data.data);
-      console.log(response.data.data);
-    } catch (err) {
-      console.error('Error Fetching Data', err);
-    }
-  };
-
-  const handleChange = (e) => {
-    setSelectedMenu(e.target.value);
-
-    console.log(e.target.value);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const formData = new FormData();
-      formData.append('_menuid', selectedMenu);
+      formData.append('_menuid', menuid);
       formData.append('_heading', heading);
       formData.append('_sub_heading', subHeading);
       formData.append('_title', title);
@@ -92,37 +62,29 @@ export default function ContentPostView() {
       formData.append('_serial', serial);
       formData.append('_status', status);
 
-      await axios.post(`${API_Link}section/content`, formData);
+      await axios.patch(`${API_Link}section/content/${_id}`, formData);
       navigate('/content');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }
   };
+
   return (
     <StyledContainer sx={containerStyles}>
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Content Info
+            Content Update Info
           </Typography>
-          <InputLabel id="demo-simple-select-label">Menu</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectedMenu}
-            label="Menu"
-            onChange={handleChange}
-          >
-            <MenuItem key={0} value="Selected" selected>
-              Select
-            </MenuItem>
-            {menuItems.map((item) => (
-              <MenuItem key={item._id} value={item._menu}>
-                {item._menu}
-              </MenuItem>
-            ))}
-          </Select>
-
+          <TextField
+            label="MenuId"
+            type="text"
+            placeholder="Enter menuid"
+            variant="outlined"
+            onChange={(e) => setMenuid(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
           <TextField
             label="Heading"
             type="text"
@@ -205,7 +167,7 @@ export default function ContentPostView() {
             margin="normal"
           />
           <Button type="submit" variant="contained" color="success">
-            Submit
+            Update
           </Button>
         </StyledForm>
       </StyledPaper>
