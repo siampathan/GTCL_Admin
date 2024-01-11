@@ -81,7 +81,7 @@ export default function ContentPostView() {
 
     try {
       const formData = new FormData();
-      formData.append('_menuid', selectedMenu);
+      formData.append('_menu', selectedMenu);
       formData.append('_heading', heading);
       formData.append('_sub_heading', subHeading);
       formData.append('_title', title);

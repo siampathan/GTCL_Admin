@@ -73,7 +73,7 @@ export default function ContentView() {
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item._id}>
-                <TableCell> {item._menuid} </TableCell>
+                <TableCell> {item._menu} </TableCell>
                 <TableCell> {item._heading} </TableCell>
                 <TableCell> {item._sub_heading} </TableCell>
                 <TableCell> {item._title} </TableCell>
