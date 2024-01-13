@@ -18,6 +18,8 @@ export const ContentUpdate = lazy(() => import('src/pages/content-update'));
 export const CompoanyInfo = lazy(() => import('src/pages/companyInfo'));
 export const CompanyInfoPost = lazy(() => import('src/pages/companyInfo-post'));
 export const CompanyInfoUpdate = lazy(() => import('src/pages/companyInfo-update'));
+export const Review = lazy(() => import('src/pages/review'));
+export const ReviewPost = lazy(() => import('src/pages/review-post'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -49,6 +51,8 @@ export default function Router() {
         { path: 'company', element: <CompoanyInfo /> },
         { path: 'company-create', element: <CompanyInfoPost /> },
         { path: 'company/:id', element: <CompanyInfoUpdate /> },
+        { path: 'review', element: <Review /> },
+        { path: 'review-create', element: <ReviewPost /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],
