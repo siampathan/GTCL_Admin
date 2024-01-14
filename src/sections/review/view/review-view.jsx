@@ -61,6 +61,7 @@ export default function CompanyInfoView() {
             <TableRow>
               <TableCell>Heading</TableCell>
               <TableCell>Sub Heading</TableCell>
+              <TableCell>Menu</TableCell>
               <TableCell>Image</TableCell>
               <TableCell>Description</TableCell>
               <TableCell>Action</TableCell>
@@ -71,6 +72,7 @@ export default function CompanyInfoView() {
               <TableRow key={item.id}>
                 <TableCell> {item.name} </TableCell>
                 <TableCell>{item.link}</TableCell>
+                <TableCell> {item.menu} </TableCell>
                 <TableCell>
                   <Avatar
                     alty={item.url}
@@ -82,7 +84,7 @@ export default function CompanyInfoView() {
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/company/${item.id}`}
+                    to={`/review/${item.id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}

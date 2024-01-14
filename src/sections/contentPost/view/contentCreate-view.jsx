@@ -109,11 +109,11 @@ export default function ContentPostView() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedMenu}
+            value={selectedMenu || 'SELECT MENU'}
             label="Menu"
             onChange={handleChange}
           >
-            <MenuItem key={0} value="Selected" selected>
+            <MenuItem key={0} value="Select">
               Select
             </MenuItem>
             {menuItems.map((item) => (

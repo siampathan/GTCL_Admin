@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 import ReactQuill from 'react-quill-style';
-import { useNavigate } from 'react-router-dom';
 import 'react-quill-style/dist/quill.snow.css';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/system';
 import { Paper, Button, Container, TextField, Typography } from '@mui/material';
@@ -12,7 +12,7 @@ import { API_Link } from 'src/components/api/api';
 const containerStyles = {
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   height: '60vh',
 };
 
@@ -35,12 +35,13 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function ReviewPostView() {
+export default function ReviewUpdateView() {
   const [title, setTitle] = useState('');
   const [file, setFile] = useState(null);
   const [link, setLink] = useState('');
   const [content, setContent] = useState('');
   const [menu, setMenu] = useState('');
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleChange = (value) => {
@@ -49,7 +50,6 @@ export default function ReviewPostView() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const formData = new FormData();
       formData.append('title', title);
@@ -58,7 +58,7 @@ export default function ReviewPostView() {
       formData.append('content', content);
       formData.append('menu', menu);
 
-      await axios.post(`${API_Link}review/info`, formData, {
+      await axios.patch(`${API_Link}review/info/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -75,7 +75,7 @@ export default function ReviewPostView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Review Info Create
+            Update Review Info
           </Typography>
           <TextField
             label="Heading"
@@ -139,7 +139,7 @@ export default function ReviewPostView() {
           />
 
           <Button type="submit" variant="contained" color="success">
-            Submit
+            Update
           </Button>
         </StyledForm>
       </StyledPaper>
