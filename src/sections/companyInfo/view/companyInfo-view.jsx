@@ -43,7 +43,7 @@ export default function CompanyInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Company Info</Typography>
+        <Typography variant="h4">Company Info</Typography>
 
         <Button
           component={Link}
@@ -86,7 +86,7 @@ export default function CompanyInfoView() {
                 <TableCell>
                   <iframe
                     title="Google Maps Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.2302310510568!2d90.44491137602913!3d23.703470990575138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9d77be74dc3%3A0x646d24d57449ff39!2z4Kam4Kao4Ka_4Kav4Ka84Ka-IOCmleCmsuCnh-CmnA!5e0!3m2!1sbn!2sbd!4v1705390716393!5m2!1sbn!2sbd"
+                    src="https://maps.app.goo.gl/4iCYuXHFoSfJ8en3A"
                     width="150"
                     height="100"
                     style={{ border: 0 }}

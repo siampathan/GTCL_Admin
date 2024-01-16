@@ -36,15 +36,17 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function ReviewPostView() {
-  const [title, setTitle] = useState('');
+  const [heading, setHeading] = useState('');
   const [file, setFile] = useState(null);
-  const [link, setLink] = useState('');
-  const [content, setContent] = useState('');
+  const [sub_heading, setSubHeading] = useState('');
+  const [name, setName] = useState('');
+  const [designation, setDesignation] = useState('');
+  const [description, setDescription] = useState('');
   const [menu, setMenu] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (value) => {
-    setContent(value);
+    setDescription(value);
   };
 
   const handleSubmit = async (e) => {
@@ -52,10 +54,12 @@ export default function ReviewPostView() {
 
     try {
       const formData = new FormData();
-      formData.append('title', title);
+      formData.append('heading', heading);
       formData.append('file', file);
-      formData.append('link', link);
-      formData.append('content', content);
+      formData.append('sub_heading', sub_heading);
+      formData.append('name', name);
+      formData.append('designation', designation);
+      formData.append('description', description);
       formData.append('menu', menu);
 
       await axios.post(`${API_Link}review/info`, formData, {
@@ -80,9 +84,18 @@ export default function ReviewPostView() {
           <TextField
             label="Heading"
             type="text"
-            placeholder="Enter Title"
+            placeholder="Enter Heading"
             variant="outlined"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setHeading(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Sub Heading"
+            type="text"
+            placeholder="Enter Sub Heading"
+            variant="outlined"
+            onChange={(e) => setSubHeading(e.target.value)}
             fullWidth
             margin="normal"
           />
@@ -95,26 +108,36 @@ export default function ReviewPostView() {
             margin="normal"
           />
           <TextField
-            label="Sub Heading"
+            label="Name"
             type="text"
-            placeholder="Enter Link"
+            placeholder="Enter Name"
             variant="outlined"
-            onChange={(e) => setLink(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Designation"
+            type="text"
+            placeholder="Enter Designation"
+            variant="outlined"
+            onChange={(e) => setDesignation(e.target.value)}
             fullWidth
             margin="normal"
           />
           <TextField
             label="Menu"
             type="text"
-            placeholder="Enter Link"
+            placeholder="Enter Menu"
             variant="outlined"
             onChange={(e) => setMenu(e.target.value)}
             fullWidth
             margin="normal"
           />
+          <p>Enter Description</p>
           <ReactQuill
             theme="snow"
-            value={content}
+            value={description}
             onChange={handleChange}
             modules={{
               toolbar: [

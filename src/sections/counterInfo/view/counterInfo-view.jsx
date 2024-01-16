@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   Stack,
   Table,
@@ -20,7 +22,13 @@ export default function CounterInfoView() {
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Create Counter Info</Typography>
 
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
+        <Button
+          component={Link}
+          to="/counter-create"
+          variant="contained"
+          color="inherit"
+          startIcon={<Iconify icon="eva:plus-fill" />}
+        >
           Add Post
         </Button>
       </Stack>

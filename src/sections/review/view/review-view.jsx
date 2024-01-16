@@ -43,7 +43,7 @@ export default function CompanyInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Company Info</Typography>
+        <Typography variant="h4">Review Info</Typography>
 
         <Button
           component={Link}
@@ -61,8 +61,10 @@ export default function CompanyInfoView() {
             <TableRow>
               <TableCell>Heading</TableCell>
               <TableCell>Sub Heading</TableCell>
+              <TableCell>Name</TableCell>
               <TableCell>Menu</TableCell>
               <TableCell>Image</TableCell>
+              <TableCell>Designation</TableCell>
               <TableCell>Description</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
@@ -70,8 +72,9 @@ export default function CompanyInfoView() {
           <TableBody>
             {items.map((item) => (
               <TableRow key={item.id}>
+                <TableCell> {item.heading} </TableCell>
+                <TableCell>{item.sub_heading}</TableCell>
                 <TableCell> {item.name} </TableCell>
-                <TableCell>{item.link}</TableCell>
                 <TableCell> {item.menu} </TableCell>
                 <TableCell>
                   <Avatar
@@ -80,7 +83,8 @@ export default function CompanyInfoView() {
                     style={{ width: '100px', height: '90px', borderRadius: '10px' }}
                   />
                 </TableCell>
-                <TableCell>{item.content && parse(item.content)}</TableCell>
+                <TableCell> {item.designation} </TableCell>
+                <TableCell>{item.description && parse(item.description)}</TableCell>
                 <TableCell>
                   <Button
                     component={Link}

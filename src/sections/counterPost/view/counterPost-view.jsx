@@ -42,18 +42,15 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function ContentPostView() {
+export default function CounterPostView() {
+  const [file, setFile] = useState(null);
   const [heading, setHeading] = useState('');
-  const [subHeading, setSubHeading] = useState('');
+  const [sub_heading, setSubHeading] = useState('');
+  const [count, setCount] = useState('');
   const [title, setTitle] = useState('');
-  const [subTitle, setSubTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [button, setButton] = useState('');
-  const [link, setLink] = useState('');
-  const [serial, setSerial] = useState('');
-  const [status, setStatus] = useState('');
+  const [sub_title, setSubTitle] = useState('');
+  const [menu, setMenu] = useState('');
   const [menuItems, setMenuItems] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,8 +59,8 @@ export default function ContentPostView() {
 
   const getParentId = async () => {
     try {
-      const response = await axios.get(`${API_Link}header/title`);
-      setMenuItems(response.data.data);
+      const response = await axios.get(`${API_Link}review/info`);
+      setMenu(response.data.data);
       console.log(response.data.data);
     } catch (err) {
       console.error('Error Fetching Data', err);
@@ -71,7 +68,7 @@ export default function ContentPostView() {
   };
 
   const handleChange = (e) => {
-    setSelectedMenu(e.target.value);
+    setMenu(e.target.value);
 
     console.log(e.target.value);
   };
@@ -81,16 +78,12 @@ export default function ContentPostView() {
 
     try {
       const formData = new FormData();
-      formData.append('_menu', selectedMenu);
-      formData.append('_heading', heading);
-      formData.append('_sub_heading', subHeading);
-      formData.append('_title', title);
-      formData.append('_sub_title', subTitle);
-      formData.append('_description', description);
-      formData.append('_button', button);
-      formData.append('_link', link);
-      formData.append('_serial', serial);
-      formData.append('_status', status);
+      formData.append('menu', menu);
+      formData.append('heading', heading);
+      formData.append('sub_heading', sub_heading);
+      formData.append('title', title);
+      formData.append('sub_title', sub_title);
+      formData.append('count', count);
 
       await axios.post(`${API_Link}section/content`, formData);
       navigate('/content');
@@ -98,6 +91,7 @@ export default function ContentPostView() {
       console.error('Error Submitting form: ', err.message);
     }
   };
+
   return (
     <StyledContainer sx={containerStyles}>
       <StyledPaper sx={paperStyles}>
@@ -109,7 +103,7 @@ export default function ContentPostView() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedMenu || 'SELECT MENU'}
+            value={menu || 'SELECT MENU'}
             label="Menu"
             onChange={handleChange}
           >
@@ -117,7 +111,7 @@ export default function ContentPostView() {
               Select
             </MenuItem>
             {menuItems.map((item) => (
-              <MenuItem key={item._id} value={item._menu}>
+              <MenuItem key={item.id} value={item.menu}>
                 {item._menu}
               </MenuItem>
             ))}
@@ -160,47 +154,11 @@ export default function ContentPostView() {
             margin="normal"
           />
           <TextField
-            label="Description"
+            label="Count"
             type="text"
-            placeholder="Enter description"
+            placeholder="Enter Count Number"
             variant="outlined"
-            onChange={(e) => setDescription(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Button"
-            type="text"
-            placeholder="Enter button"
-            variant="outlined"
-            onChange={(e) => setButton(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Link"
-            type="text"
-            placeholder="Enter Link"
-            variant="outlined"
-            onChange={(e) => setLink(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Serial"
-            type="text"
-            placeholder="Enter serial"
-            variant="outlined"
-            onChange={(e) => setSerial(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Status"
-            type="text"
-            placeholder="Enter status"
-            variant="outlined"
-            onChange={(e) => setStatus(e.target.value)}
+            onChange={(e) => setCount(e.target.value)}
             fullWidth
             margin="normal"
           />

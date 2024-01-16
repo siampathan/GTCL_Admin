@@ -41,7 +41,7 @@ export default function CompanyInfoCreate() {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [mobile, setMobile] = useState('');
-  const [map, setMap] = useState('');
+  const [map_view, setMap] = useState('');
   const [tag_line, setTagLine] = useState('');
   const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ export default function CompanyInfoCreate() {
       formData.append('address', address);
       formData.append('phone', phone);
       formData.append('mobile', mobile);
-      formData.append('map', map);
+      formData.append('map_view', map_view);
       formData.append('tag_line', tag_line);
 
       await axios.post(`${API_Link}company/info`, formData, {
@@ -100,7 +100,7 @@ export default function CompanyInfoCreate() {
           <TextField
             label="Address"
             type="text"
-            placeholder="Enter Address Link"
+            placeholder="Enter Address"
             variant="outlined"
             onChange={(e) => setAddress(e.target.value)}
             fullWidth
