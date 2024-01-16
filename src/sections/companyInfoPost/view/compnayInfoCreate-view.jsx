@@ -36,14 +36,17 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function CompanyInfoCreate() {
-  const [title, setTitle] = useState('');
+  const [email, setEmail] = useState('');
   const [file, setFile] = useState(null);
-  const [link, setLink] = useState('');
-  const [content, setContent] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [map, setMap] = useState('');
+  const [tag_line, setTagLine] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (value) => {
-    setContent(value);
+    setTagLine(value);
   };
 
   const handleSubmit = async (e) => {
@@ -51,10 +54,13 @@ export default function CompanyInfoCreate() {
 
     try {
       const formData = new FormData();
-      formData.append('title', title);
+      formData.append('email', email);
       formData.append('file', file);
-      formData.append('link', link);
-      formData.append('content', content);
+      formData.append('address', address);
+      formData.append('phone', phone);
+      formData.append('mobile', mobile);
+      formData.append('map', map);
+      formData.append('tag_line', tag_line);
 
       await axios.post(`${API_Link}company/info`, formData, {
         headers: {
@@ -75,11 +81,11 @@ export default function CompanyInfoCreate() {
             Create Company Info Create
           </Typography>
           <TextField
-            label="Title"
+            label="Email"
             type="email"
-            placeholder="Enter Title"
+            placeholder="Enter Email"
             variant="outlined"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
             margin="normal"
           />
@@ -92,17 +98,45 @@ export default function CompanyInfoCreate() {
             margin="normal"
           />
           <TextField
-            label="Link"
+            label="Address"
             type="text"
-            placeholder="Enter Link"
+            placeholder="Enter Address Link"
             variant="outlined"
-            onChange={(e) => setLink(e.target.value)}
+            onChange={(e) => setAddress(e.target.value)}
             fullWidth
             margin="normal"
           />
+          <TextField
+            label="Phone"
+            type="phone"
+            placeholder="Enter Phone"
+            variant="outlined"
+            onChange={(e) => setPhone(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Mobile"
+            type="phone"
+            placeholder="Enter Mobile"
+            variant="outlined"
+            onChange={(e) => setMobile(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Map"
+            type="phone"
+            placeholder="Enter Map"
+            variant="outlined"
+            onChange={(e) => setMap(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <p>Tag Line</p>
           <ReactQuill
             theme="snow"
-            value={content}
+            value={tag_line}
             onChange={handleChange}
             modules={{
               toolbar: [

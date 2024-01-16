@@ -22,14 +22,14 @@ export default function PostPage() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     axios
-      .get(`${API_Link}header/`)
+      .get(`${API_Link}header/title`)
       .then((res) => setItems(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 
   const handleDelect = async (id) => {
     try {
-      await axios.delete(`${API_Link}delete/${id}`);
+      await axios.delete(`${API_Link}delete/title/${id}`);
       window.location.reload();
     } catch (err) {
       console.error('Error', err);

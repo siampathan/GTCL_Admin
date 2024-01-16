@@ -12,7 +12,7 @@ import { API_Link } from 'src/components/api/api';
 const containerStyles = {
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   height: '60vh',
 };
 
@@ -36,25 +36,31 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function CompanyInfoUpdate() {
-  const [title, setTitle] = useState('');
+  const [email, setEmail] = useState('');
   const [file, setFile] = useState(null);
-  const [link, setLink] = useState('');
-  const [content, setContent] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [map, setMap] = useState('');
+  const [tag_line, setTagLine] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
 
   const handleChange = (value) => {
-    setContent(value);
+    setTagLine(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('title', title);
+      formData.append('email', email);
       formData.append('file', file);
-      formData.append('link', link);
-      formData.append('content', content);
+      formData.append('address', address);
+      formData.append('phone', phone);
+      formData.append('mobile', mobile);
+      formData.append('map', map);
+      formData.append('tag_line', tag_line);
 
       await axios.patch(`${API_Link}company/info/${id}`, formData, {
         headers: {
@@ -73,14 +79,14 @@ export default function CompanyInfoUpdate() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Update Data
+            Update Company Info
           </Typography>
           <TextField
-            label="Title"
-            type="text"
-            placeholder="Enter Title"
+            label="Email"
+            type="email"
+            placeholder="Enter Email"
             variant="outlined"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
             margin="normal"
           />
@@ -92,19 +98,46 @@ export default function CompanyInfoUpdate() {
             fullWidth
             margin="normal"
           />
-
           <TextField
-            label="Link"
+            label="Address"
             type="text"
-            placeholder="Enter Social"
+            placeholder="Enter Address"
             variant="outlined"
-            onChange={(e) => setLink(e.target.value)}
+            onChange={(e) => setAddress(e.target.value)}
             fullWidth
             margin="normal"
           />
+          <TextField
+            label="Phone"
+            type="phone"
+            placeholder="Enter Phone"
+            variant="outlined"
+            onChange={(e) => setPhone(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Mobile"
+            type="phone"
+            placeholder="Enter Mobile"
+            variant="outlined"
+            onChange={(e) => setMobile(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Map"
+            type="phone"
+            placeholder="Enter Map"
+            variant="outlined"
+            onChange={(e) => setMap(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <p>Tag Line</p>
           <ReactQuill
             theme="snow"
-            value={content}
+            value={tag_line}
             onChange={handleChange}
             modules={{
               toolbar: [
@@ -127,6 +160,7 @@ export default function CompanyInfoUpdate() {
               ],
             }}
           />
+
           <Button type="submit" variant="contained" color="success">
             Update
           </Button>
