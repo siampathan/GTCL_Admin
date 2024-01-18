@@ -49,27 +49,26 @@ export default function CounterPostView() {
   const [count, setCount] = useState('');
   const [title, setTitle] = useState('');
   const [sub_title, setSubTitle] = useState('');
-  const [menu, setMenu] = useState('');
   const [menuItems, setMenuItems] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    getParentId();
+    getMenuItems();
   }, []);
 
-  const getParentId = async () => {
+  const getMenuItems = async () => {
     try {
       const response = await axios.get(`${API_Link}review/info`);
-      setMenu(response.data.data);
-      console.log(response.data.data);
+      console.log(response.data);
+      setMenuItems(response.data);
     } catch (err) {
-      console.error('Error Fetching Data', err);
+      console.log('Error fetching Data', err);
     }
   };
 
   const handleChange = (e) => {
-    setMenu(e.target.value);
-
+    setSelectedMenu(e.target.value);
     console.log(e.target.value);
   };
 
@@ -78,15 +77,16 @@ export default function CounterPostView() {
 
     try {
       const formData = new FormData();
-      formData.append('menu', menu);
+      formData.append('file', file);
+      formData.append('menu', selectedMenu);
       formData.append('heading', heading);
       formData.append('sub_heading', sub_heading);
       formData.append('title', title);
       formData.append('sub_title', sub_title);
       formData.append('count', count);
 
-      await axios.post(`${API_Link}section/content`, formData);
-      navigate('/content');
+      await axios.post(`${API_Link}counter/info`, formData);
+      navigate('/counter');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }
@@ -97,22 +97,19 @@ export default function CounterPostView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Content Info
+            Create Counter Info
           </Typography>
           <InputLabel id="demo-simple-select-label">Menu</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={menu || 'SELECT MENU'}
+            value={selectedMenu}
             label="Menu"
             onChange={handleChange}
           >
-            <MenuItem key={0} value="Select">
-              Select
-            </MenuItem>
             {menuItems.map((item) => (
               <MenuItem key={item.id} value={item.menu}>
-                {item._menu}
+                {item.menu}
               </MenuItem>
             ))}
           </Select>
@@ -150,6 +147,23 @@ export default function CounterPostView() {
             placeholder="Enter subtitle"
             variant="outlined"
             onChange={(e) => setSubTitle(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          {/* <TextField
+            label="Menu"
+            type="text"
+            placeholder="Enter Menu"
+            variant="outlined"
+            onChange={(e) => setMenuItems(e.target.value)}
+            fullWidth
+            margin="normal"
+          /> */}
+          <TextField
+            label=""
+            type="file"
+            variant="outlined"
+            onChange={(e) => setFile(e.target.files[0])}
             fullWidth
             margin="normal"
           />
