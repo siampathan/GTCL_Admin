@@ -34,12 +34,12 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function CreateView() {
-  const [menu, setMenu] = useState('');
-  const [parentId, setParentId] = useState('');
-  const [slug, setSlug] = useState('');
-  const [sort, setSort] = useState('');
-  const [active, setActive] = useState('');
-  const [title, setTitle] = useState('');
+  const [_menu, setMenu] = useState('');
+  const [_parentId, setParentId] = useState('');
+  const [_slug, setSlug] = useState('');
+  const [_sort, setSort] = useState('');
+  const [_active, setActive] = useState('');
+  const [_isTitle, setTitle] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -47,15 +47,15 @@ export default function CreateView() {
 
     try {
       const postData = {
-        menu,
-        parentId,
-        slug,
-        sort,
-        active,
-        title,
+        _menu,
+        _parentId,
+        _slug,
+        _sort,
+        _active,
+        _isTitle,
       };
 
-      await axios.post(`${API_Link}header/create`, postData);
+      await axios.post(`${API_Link}header/title`, postData);
 
       navigate('/post');
     } catch (error) {

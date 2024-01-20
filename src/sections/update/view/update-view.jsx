@@ -34,12 +34,12 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function UpdateView() {
-  const [menu, setMenu] = useState('');
-  const [parentId, setParentId] = useState('');
-  const [slug, setSlug] = useState('');
-  const [sort, setSort] = useState('');
-  const [active, setActive] = useState('');
-  const [title, setTitle] = useState('');
+  const [_menu, setMenu] = useState('');
+  const [_parentId, setParentId] = useState('');
+  const [_slug, setSlug] = useState('');
+  const [_sort, setSort] = useState('');
+  const [_active, setActive] = useState('');
+  const [_isTitle, setTitle] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -47,12 +47,12 @@ export default function UpdateView() {
     e.preventDefault();
     await axios
       .put(`${API_Link}header/update/${id}`, {
-        menu,
-        parentId,
-        slug,
-        sort,
-        active,
-        title,
+        _menu,
+        _parentId,
+        _slug,
+        _sort,
+        _active,
+        _isTitle,
       })
       .then((res) => {
         console.log(res);

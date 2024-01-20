@@ -21,16 +21,19 @@ import { API_Link } from 'src/components/api/api';
 export default function PostPage() {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${API_Link}header/title`)
-      .then((res) => setItems(res.data.data))
-      .catch((err) => console.log(err));
+    getItems();
   }, []);
+
+  const getItems = async () => {
+    const response = await axios.get(`${API_Link}header/title`);
+    setItems(response.data);
+    console.log(response.data);
+  };
 
   const handleDelect = async (id) => {
     try {
-      await axios.delete(`${API_Link}delete/title/${id}`);
-      window.location.reload();
+      await axios.delete(`${API_Link}header/title/${id}`);
+      getItems();
     } catch (err) {
       console.error('Error', err);
     }
