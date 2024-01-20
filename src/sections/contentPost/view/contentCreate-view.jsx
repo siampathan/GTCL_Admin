@@ -12,6 +12,7 @@ import {
   Container,
   InputLabel,
   Typography,
+  FormControl,
 } from '@mui/material';
 
 import { API_Link } from 'src/components/api/api';
@@ -63,8 +64,7 @@ export default function ContentPostView() {
   const getParentId = async () => {
     try {
       const response = await axios.get(`${API_Link}header/title`);
-      setMenuItems(response.data.data);
-      console.log(response.data.data);
+      setMenuItems(response.data);
     } catch (err) {
       console.error('Error Fetching Data', err);
     }
@@ -105,23 +105,25 @@ export default function ContentPostView() {
           <Typography variant="h3" gutterBottom>
             Create Content Info
           </Typography>
-          <InputLabel id="demo-simple-select-label">Menu</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectedMenu || 'SELECT MENU'}
-            label="Menu"
-            onChange={handleChange}
-          >
-            <MenuItem key={0} value="Select">
-              Select
-            </MenuItem>
-            {menuItems.map((item) => (
-              <MenuItem key={item._id} value={item._menu}>
-                {item._menu}
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Menu</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={selectedMenu}
+              label="Menu"
+              onChange={handleChange}
+            >
+              <MenuItem key={0} value="Select">
+                Select
               </MenuItem>
-            ))}
-          </Select>
+              {menuItems.map((item) => (
+                <MenuItem key={item._id} value={item._menu}>
+                  {item._menu}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           <TextField
             label="Heading"

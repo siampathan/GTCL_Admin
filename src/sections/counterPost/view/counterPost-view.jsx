@@ -12,6 +12,7 @@ import {
   Container,
   InputLabel,
   Typography,
+  FormControl,
 } from '@mui/material';
 
 import { API_Link } from 'src/components/api/api';
@@ -60,7 +61,6 @@ export default function CounterPostView() {
   const getMenuItems = async () => {
     try {
       const response = await axios.get(`${API_Link}review/info`);
-      console.log(response.data);
       setMenuItems(response.data);
     } catch (err) {
       console.log('Error fetching Data', err);
@@ -99,20 +99,22 @@ export default function CounterPostView() {
           <Typography variant="h3" gutterBottom>
             Create Counter Info
           </Typography>
-          <InputLabel id="demo-simple-select-label">Menu</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectedMenu}
-            label="Menu"
-            onChange={handleChange}
-          >
-            {menuItems.map((item) => (
-              <MenuItem key={item.id} value={item.menu}>
-                {item.menu}
-              </MenuItem>
-            ))}
-          </Select>
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Menu</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={selectedMenu}
+              label="Menu"
+              onChange={handleChange}
+            >
+              {menuItems.map((item) => (
+                <MenuItem key={item.id} value={item.menu}>
+                  {item.menu}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           <TextField
             label="Heading"
