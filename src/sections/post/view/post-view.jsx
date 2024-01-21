@@ -27,7 +27,6 @@ export default function PostPage() {
   const getItems = async () => {
     const response = await axios.get(`${API_Link}header/title`);
     setItems(response.data);
-    console.log(response.data);
   };
 
   const handleDelect = async (id) => {

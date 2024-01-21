@@ -46,7 +46,7 @@ export default function UpdateView() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`${API_Link}header/update/${id}`, {
+      .patch(`${API_Link}header/title/${id}`, {
         _menu,
         _parentId,
         _slug,
@@ -55,7 +55,6 @@ export default function UpdateView() {
         _isTitle,
       })
       .then((res) => {
-        console.log(res);
         navigate('/post');
       })
       .catch((err) => console.log(err));
