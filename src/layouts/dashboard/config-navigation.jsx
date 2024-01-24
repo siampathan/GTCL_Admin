@@ -48,6 +48,11 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'Footer Info',
+    path: '/footer',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'product',
     path: '/products',
     icon: icon('ic_cart'),

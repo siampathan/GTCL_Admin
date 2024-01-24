@@ -35,18 +35,13 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function CompanyInfoCreate() {
-  const [email, setEmail] = useState('');
-  const [file, setFile] = useState(null);
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [map_view, setMap] = useState('');
-  const [tag_line, setTagLine] = useState('');
+export default function FooterCreateView() {
+  const [header, setHeader] = useState('');
+  const [list, setList] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (value) => {
-    setTagLine(value);
+    setList(value);
   };
 
   const handleSubmit = async (e) => {
@@ -54,25 +49,17 @@ export default function CompanyInfoCreate() {
 
     try {
       const formData = new FormData();
-      formData.append('email', email);
-      formData.append('file', file);
-      formData.append('address', address);
-      formData.append('phone', phone);
-      formData.append('mobile', mobile);
-      formData.append('map_view', map_view);
-      formData.append('tag_line', tag_line);
+      formData.append('header', header);
+      formData.append('list', list);
 
-      await axios.post(`${API_Link}company/info`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      navigate('/company');
+      await axios.post(`${API_Link}footer/item`, formData);
+      navigate('/footer');
       console.log('Submission successful!');
     } catch (err) {
       console.error('Error submitting form:', err.message);
     }
   };
+
   return (
     <StyledContainer sx={containerStyles}>
       <StyledPaper sx={paperStyles}>
@@ -80,63 +67,20 @@ export default function CompanyInfoCreate() {
           <Typography variant="h3" gutterBottom>
             Create Company Info Create
           </Typography>
+
           <TextField
-            label="Email"
+            label="Header"
             type="text"
-            placeholder="Enter Email"
+            placeholder="Enter Header"
             variant="outlined"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setHeader(e.target.value)}
             fullWidth
             margin="normal"
           />
-          <TextField
-            label=""
-            type="file"
-            variant="outlined"
-            onChange={(e) => setFile(e.target.files[0])}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Address"
-            type="text"
-            placeholder="Enter Address"
-            variant="outlined"
-            onChange={(e) => setAddress(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Phone"
-            type="phone"
-            placeholder="Enter Phone"
-            variant="outlined"
-            onChange={(e) => setPhone(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Mobile"
-            type="phone"
-            placeholder="Enter Mobile"
-            variant="outlined"
-            onChange={(e) => setMobile(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Map"
-            type="phone"
-            placeholder="Enter Map"
-            variant="outlined"
-            onChange={(e) => setMap(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <p>Tag Line</p>
+          <p>List Items</p>
           <ReactQuill
             theme="snow"
-            value={tag_line}
+            value={list}
             onChange={handleChange}
             modules={{
               toolbar: [

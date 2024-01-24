@@ -85,14 +85,13 @@ export default function CompanyInfoView() {
                 <TableCell>{item.mobile}</TableCell>
                 <TableCell>
                   <iframe
-                    title="Google Maps Location"
-                    src="https://maps.app.goo.gl/4iCYuXHFoSfJ8en3A"
-                    width="150"
-                    height="100"
+                    title="Google Map"
+                    width="300"
+                    height="200"
                     style={{ border: 0 }}
-                    allowFullScreen=""
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                    src={`${item.map_view}`}
                   />
                 </TableCell>
                 <TableCell>{item.tag_line && parse(item.tag_line)}</TableCell>
