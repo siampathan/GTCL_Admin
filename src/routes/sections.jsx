@@ -12,6 +12,8 @@ export const UpdatePage = lazy(() => import('src/pages/update'));
 export const ViewSocialInfo = lazy(() => import('src/pages/social-info'));
 export const CreateSocialInfo = lazy(() => import('src/pages/social-post'));
 export const SocialUpdate = lazy(() => import('src/pages/social-update'));
+export const ViewStoriesInfo = lazy(() => import('src/pages/stories-info'));
+export const CreateStoriesInfo = lazy(() => import('src/pages/stories-post'));
 export const ContentPage = lazy(() => import('src/pages/content'));
 export const ContentPost = lazy(() => import('src/pages/content-post'));
 export const ContentUpdate = lazy(() => import('src/pages/content-update'));
@@ -23,6 +25,9 @@ export const ReviewPost = lazy(() => import('src/pages/review-post'));
 export const ReviewUpdate = lazy(() => import('src/pages/review-update'));
 export const CounterInfo = lazy(() => import('src/pages/counterInfo'));
 export const CounterPost = lazy(() => import('src/pages/counterPost'));
+export const CoursesInfo = lazy(() => import('src/pages/courses'));
+export const CoursesPost = lazy(() => import('src/pages/coursesPost'));
+export const TeachersInfo = lazy(() => import('src/pages/teachers'));
 export const FooterView = lazy(() => import('src/pages/footer-view'));
 export const FooterCreate = lazy(() => import('src/pages/footer-create'));
 export const FooterUpdate = lazy(() => import('src/pages/footer-update'));
@@ -51,6 +56,8 @@ export default function Router() {
         { path: 'social', element: <ViewSocialInfo /> },
         { path: 'social-create', element: <CreateSocialInfo /> },
         { path: 'social/:id', element: <SocialUpdate /> },
+        { path: 'stories', element: <ViewStoriesInfo /> },
+        { path: 'stories-create', element: <CreateStoriesInfo /> },
         { path: 'content', element: <ContentPage /> },
         { path: 'content-create', element: <ContentPost /> },
         { path: 'content/:id', element: <ContentUpdate /> },
@@ -62,6 +69,9 @@ export default function Router() {
         { path: 'review/:id', element: <ReviewUpdate /> },
         { path: 'counter', element: <CounterInfo /> },
         { path: 'counter-create', element: <CounterPost /> },
+        { path: 'courses', element: <CoursesInfo /> },
+        { path: 'courses-create', element: <CoursesPost /> },
+        { path: 'teachers', element: <TeachersInfo /> },
         { path: 'footer', element: <FooterView /> },
         { path: 'footer-create', element: <FooterCreate /> },
         { path: 'footer/:id', element: <FooterUpdate /> },

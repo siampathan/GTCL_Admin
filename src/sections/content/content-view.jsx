@@ -6,6 +6,7 @@ import {
   Stack,
   Table,
   Paper,
+  Avatar,
   Button,
   TableRow,
   TableHead,
@@ -41,7 +42,7 @@ export default function ContentView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Post</Typography>
+        <Typography variant="h4">Content Info</Typography>
 
         <Button
           component={Link}
@@ -65,6 +66,7 @@ export default function ContentView() {
               <TableCell>Description</TableCell>
               <TableCell>Button</TableCell>
               <TableCell>Link</TableCell>
+              <TableCell>Poster</TableCell>
               <TableCell>Serial</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Action</TableCell>
@@ -84,6 +86,13 @@ export default function ContentView() {
                   <Link to={item._link} target="_blank">
                     {item._link}
                   </Link>
+                </TableCell>
+                <TableCell>
+                  <Avatar
+                    alt={item._url}
+                    src={item._url}
+                    style={{ width: '100px', height: '90px', borderRadius: '10px' }}
+                  />
                 </TableCell>
                 <TableCell> {item._serial} </TableCell>
                 <TableCell> {item._status} </TableCell>

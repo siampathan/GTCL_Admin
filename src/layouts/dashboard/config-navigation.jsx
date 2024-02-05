@@ -53,6 +53,21 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'Stories Info',
+    path: '/stories',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'Courses',
+    path: '/courses',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'Teachers',
+    path: '/teachers',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'product',
     path: '/products',
     icon: icon('ic_cart'),

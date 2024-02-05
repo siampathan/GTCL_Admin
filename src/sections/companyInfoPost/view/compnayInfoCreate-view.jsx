@@ -126,7 +126,7 @@ export default function CompanyInfoCreate() {
           />
           <TextField
             label="Map"
-            type="phone"
+            type="text"
             placeholder="Enter Map"
             variant="outlined"
             onChange={(e) => setMap(e.target.value)}

@@ -1,6 +1,8 @@
 import axios from 'axios';
+import ReactQuill from 'react-quill-style';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'react-quill-style/dist/quill.snow.css';
 
 import { styled } from '@mui/system';
 import {
@@ -51,6 +53,7 @@ export default function ContentPostView() {
   const [description, setDescription] = useState('');
   const [button, setButton] = useState('');
   const [link, setLink] = useState('');
+  const [file, setFile] = useState(null);
   const [serial, setSerial] = useState('');
   const [status, setStatus] = useState('');
   const [menuItems, setMenuItems] = useState([]);
@@ -68,6 +71,10 @@ export default function ContentPostView() {
     } catch (err) {
       console.error('Error Fetching Data', err);
     }
+  };
+
+  const handleHeading = (value) => {
+    setHeading(value);
   };
 
   const handleChange = (e) => {
@@ -89,11 +96,17 @@ export default function ContentPostView() {
       formData.append('_description', description);
       formData.append('_button', button);
       formData.append('_link', link);
+      formData.append('file', file);
       formData.append('_serial', serial);
       formData.append('_status', status);
 
-      await axios.post(`${API_Link}section/content`, formData);
+      await axios.post(`${API_Link}section/content`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       navigate('/content');
+      console.log('Submission Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }
@@ -125,15 +138,33 @@ export default function ContentPostView() {
             </Select>
           </FormControl>
 
-          <TextField
-            label="Heading"
-            type="text"
-            placeholder="Enter heading"
-            variant="outlined"
-            onChange={(e) => setHeading(e.target.value)}
-            fullWidth
-            margin="normal"
+          <p>Enter Heading</p>
+          <ReactQuill
+            theme="snow"
+            value={heading}
+            onChange={handleHeading}
+            modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ script: 'sub' }, { script: 'super' }],
+                [{ indent: '-1' }, { indent: '+1' }],
+                [{ direction: 'rtl' }],
+
+                [{ size: ['small', false, 'large', 'huge'] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ color: [] }, { background: [] }],
+                [{ font: [] }],
+                [{ align: [] }],
+
+                ['clean'],
+              ],
+            }}
           />
+
           <TextField
             label="Sub heading"
             type="text"
@@ -188,6 +219,15 @@ export default function ContentPostView() {
             fullWidth
             margin="normal"
           />
+
+          <TextField
+            type="file"
+            variant="outlined"
+            onChange={(e) => setFile(e.target.files[0])}
+            fullWidth
+            margin="normal"
+          />
+
           <TextField
             label="Serial"
             type="text"

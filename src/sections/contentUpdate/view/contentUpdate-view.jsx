@@ -1,9 +1,21 @@
 import axios from 'axios';
-import { useState } from 'react';
+import ReactQuill from 'react-quill-style';
+import { useState, useEffect } from 'react';
+import 'react-quill-style/dist/quill.snow.css';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/system';
-import { Paper, Button, Container, TextField, Typography } from '@mui/material';
+import {
+  Paper,
+  Select,
+  Button,
+  MenuItem,
+  TextField,
+  Container,
+  InputLabel,
+  Typography,
+  FormControl,
+} from '@mui/material';
 
 import { API_Link } from 'src/components/api/api';
 
@@ -34,7 +46,6 @@ const formStyles = {
 const StyledForm = styled('form')(formStyles);
 
 export default function ContentUpdateView() {
-  const [menuid, setMenuid] = useState('');
   const [heading, setHeading] = useState('');
   const [subHeading, setSubHeading] = useState('');
   const [title, setTitle] = useState('');
@@ -42,16 +53,41 @@ export default function ContentUpdateView() {
   const [description, setDescription] = useState('');
   const [button, setButton] = useState('');
   const [link, setLink] = useState('');
+  const [file, setFile] = useState(null);
   const [serial, setSerial] = useState('');
   const [status, setStatus] = useState('');
-  const { _id } = useParams();
+  const [menuItems, setMenuItems] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState('');
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getParentId();
+  }, []);
+
+  const getParentId = async () => {
+    try {
+      const response = await axios.get(`${API_Link}header/title`);
+      setMenuItems(response.data);
+    } catch (err) {
+      console.error('Error Fetching Data', err);
+    }
+  };
+
+  const handleHeading = (value) => {
+    setHeading(value);
+  };
+
+  const handleChange = (e) => {
+    setSelectedMenu(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const formData = new FormData();
-      formData.append('_menuid', menuid);
+      formData.append('_menu', selectedMenu);
       formData.append('_heading', heading);
       formData.append('_sub_heading', subHeading);
       formData.append('_title', title);
@@ -59,11 +95,17 @@ export default function ContentUpdateView() {
       formData.append('_description', description);
       formData.append('_button', button);
       formData.append('_link', link);
+      formData.append('file', file);
       formData.append('_serial', serial);
       formData.append('_status', status);
 
-      await axios.patch(`${API_Link}section/content/${_id}`, formData);
+      await axios.patch(`${API_Link}section/content/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       navigate('/content');
+      console.log('Updated Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }
@@ -76,7 +118,7 @@ export default function ContentUpdateView() {
           <Typography variant="h3" gutterBottom>
             Content Update Info
           </Typography>
-          <TextField
+          {/* <TextField
             label="MenuId"
             type="text"
             placeholder="Enter menuid"
@@ -84,8 +126,55 @@ export default function ContentUpdateView() {
             onChange={(e) => setMenuid(e.target.value)}
             fullWidth
             margin="normal"
+          /> */}
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Menu</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={selectedMenu}
+              label="Menu"
+              onChange={handleChange}
+            >
+              <MenuItem key={0} value="Select">
+                Select
+              </MenuItem>
+              {menuItems.map((item) => (
+                <MenuItem key={item._id} value={item._menu}>
+                  {item._menu}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <p>Enter Heading</p>
+          <ReactQuill
+            theme="snow"
+            value={heading}
+            onChange={handleHeading}
+            modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ script: 'sub' }, { script: 'super' }],
+                [{ indent: '-1' }, { indent: '+1' }],
+                [{ direction: 'rtl' }],
+
+                [{ size: ['small', false, 'large', 'huge'] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ color: [] }, { background: [] }],
+                [{ font: [] }],
+                [{ align: [] }],
+
+                ['clean'],
+              ],
+            }}
           />
-          <TextField
+
+          {/* <TextField
             label="Heading"
             type="text"
             placeholder="Enter heading"
@@ -93,7 +182,7 @@ export default function ContentUpdateView() {
             onChange={(e) => setHeading(e.target.value)}
             fullWidth
             margin="normal"
-          />
+          /> */}
           <TextField
             label="Sub heading"
             type="text"
@@ -148,6 +237,15 @@ export default function ContentUpdateView() {
             fullWidth
             margin="normal"
           />
+
+          <TextField
+            type="file"
+            variant="outlined"
+            onChange={(e) => setFile(e.target.files[0])}
+            fullWidth
+            margin="normal"
+          />
+
           <TextField
             label="Serial"
             type="text"

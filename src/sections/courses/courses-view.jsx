@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   Stack,
   Table,
   Paper,
+  Avatar,
   Button,
   TableRow,
   TableHead,
@@ -18,7 +19,7 @@ import {
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
-export default function FooterView() {
+export default function CoursesView() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -26,27 +27,26 @@ export default function FooterView() {
   }, []);
 
   const getItems = async () => {
-    const response = await axios.get(`${API_Link}footer/item`);
+    const response = await axios.get(`${API_Link}courses/info`);
     setItems(response.data);
   };
 
-  const handleDelect = async (id) => {
+  const deleteItems = async (itemId) => {
     try {
-      await axios.delete(`${API_Link}footer/item/${id}`);
+      await axios.delete(`${API_Link}courses/info/${itemId}`);
       getItems();
     } catch (err) {
-      console.error('Error', err);
+      console.log(err);
     }
   };
-
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Post</Typography>
+        <Typography variant="h4">Courses Info</Typography>
 
         <Button
           component={Link}
-          to="/footer-create"
+          to="/courses-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -58,31 +58,35 @@ export default function FooterView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Header</TableCell>
-              <TableCell>List</TableCell>
+              <TableCell>Title</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Icon</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.header} </TableCell>
-                <TableCell> {item.list} </TableCell>
+                <TableCell> {item.title} </TableCell>
+                <TableCell> {item.description} </TableCell>
+                <TableCell>
+                  <Avatar alty={item.url} src={item.url} />
+                </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/footer/${item.id}`}
+                    to={`/content/${item._id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
                     component={Link}
-                    sx={{ ml: 2 }}
+                    sx={{ ml: 1 }}
                     variant="contained"
                     color="error"
+                    onClick={() => deleteItems(item.id)}
                     startIcon={<Iconify icon="ic:outline-delete" />}
-                    onClick={(e) => handleDelect(item.id)}
                   />
                 </TableCell>
               </TableRow>
