@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/system';
 import { Paper, Button, TextField, Container, Typography } from '@mui/material';
@@ -33,7 +33,7 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function CounterPostView() {
+export default function CounterUpdateView() {
   const [file, setFile] = useState(null);
   const [count, setCount] = useState('');
   const [title, setTitle] = useState('');
@@ -41,6 +41,7 @@ export default function CounterPostView() {
   const [menu, setMenu] = useState('');
   // const [selectedMenu, setSelectedMenu] = useState('');
   const navigate = useNavigate();
+  const { id } = useParams();
 
   // useEffect(() => {
   //   getMenuItems();
@@ -71,8 +72,9 @@ export default function CounterPostView() {
       formData.append('sub_title', sub_title);
       formData.append('count', count);
 
-      await axios.post(`${API_Link}counter/info`, formData);
+      await axios.patch(`${API_Link}counter/info/${id}`, formData);
       navigate('/counter');
+      console.log('Update Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }
@@ -83,7 +85,7 @@ export default function CounterPostView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Counter Info
+            Update Counter Info
           </Typography>
           {/* <FormControl>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>
@@ -147,7 +149,7 @@ export default function CounterPostView() {
             margin="normal"
           />
           <Button type="submit" variant="contained" color="success">
-            Submit
+            Update
           </Button>
         </StyledForm>
       </StyledPaper>

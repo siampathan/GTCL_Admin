@@ -76,11 +76,11 @@ export default function ContentView() {
             {items?.map((item) => (
               <TableRow key={item._id}>
                 <TableCell> {item._menu} </TableCell>
-                <TableCell> {item._heading} </TableCell>
+                <TableCell>{item._heading}</TableCell>
                 <TableCell> {item._sub_heading} </TableCell>
                 <TableCell> {item._title} </TableCell>
                 <TableCell> {item._sub_title} </TableCell>
-                <TableCell> {item._description} </TableCell>
+                <TableCell>{item._description}</TableCell>
                 <TableCell> {item._button} </TableCell>
                 <TableCell>
                   <Link to={item._link} target="_blank">

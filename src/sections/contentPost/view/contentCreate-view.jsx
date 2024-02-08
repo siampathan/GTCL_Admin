@@ -74,7 +74,7 @@ export default function ContentPostView() {
   };
 
   const handleHeading = (value) => {
-    setHeading(value);
+    setDescription(value);
   };
 
   const handleChange = (e) => {
@@ -131,38 +131,21 @@ export default function ContentPostView() {
                 Select
               </MenuItem>
               {menuItems.map((item) => (
-                <MenuItem key={item._id} value={item._menu}>
+                <MenuItem key={item._id} value={item._id}>
                   {item._menu}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
 
-          <p>Enter Heading</p>
-          <ReactQuill
-            theme="snow"
-            value={heading}
-            onChange={handleHeading}
-            modules={{
-              toolbar: [
-                ['bold', 'italic', 'underline', 'strike'],
-                ['blockquote', 'code-block'],
-
-                [{ list: 'ordered' }, { list: 'bullet' }],
-                [{ script: 'sub' }, { script: 'super' }],
-                [{ indent: '-1' }, { indent: '+1' }],
-                [{ direction: 'rtl' }],
-
-                [{ size: ['small', false, 'large', 'huge'] }],
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-                [{ color: [] }, { background: [] }],
-                [{ font: [] }],
-                [{ align: [] }],
-
-                ['clean'],
-              ],
-            }}
+          <TextField
+            label="Heading"
+            type="text"
+            placeholder="Enter Heading"
+            variant="outlined"
+            onChange={(e) => setHeading(e.target.value)}
+            fullWidth
+            margin="normal"
           />
 
           <TextField
@@ -192,14 +175,31 @@ export default function ContentPostView() {
             fullWidth
             margin="normal"
           />
-          <TextField
-            label="Description"
-            type="text"
-            placeholder="Enter description"
-            variant="outlined"
-            onChange={(e) => setDescription(e.target.value)}
-            fullWidth
-            margin="normal"
+          <p>Enter Description</p>
+          <ReactQuill
+            theme="snow"
+            value={description}
+            onChange={handleHeading}
+            modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ script: 'sub' }, { script: 'super' }],
+                [{ indent: '-1' }, { indent: '+1' }],
+                [{ direction: 'rtl' }],
+
+                [{ size: ['small', false, 'large', 'huge'] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ color: [] }, { background: [] }],
+                [{ font: [] }],
+                [{ align: [] }],
+
+                ['clean'],
+              ],
+            }}
           />
           <TextField
             label="Button"

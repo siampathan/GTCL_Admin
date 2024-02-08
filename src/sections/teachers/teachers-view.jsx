@@ -33,7 +33,7 @@ export default function TeachersView() {
 
   const deleteItems = async (itemId) => {
     try {
-      await axios.delete(`${API_Link}courses/info/${itemId}`);
+      await axios.delete(`${API_Link}teachers/info/${itemId}`);
       getItems();
     } catch (err) {
       console.log(err);
@@ -46,12 +46,12 @@ export default function TeachersView() {
 
         <Button
           component={Link}
-          to="/courses-create"
+          to="/teachers-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Teacher
         </Button>
       </Stack>
       <Paper>
@@ -77,7 +77,7 @@ export default function TeachersView() {
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/content/${item._id}`}
+                    to={`/teachers-update/${item.id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}

@@ -30,10 +30,11 @@ export default function CounterInfoView() {
     setItems(response.data);
   };
 
-  const deleteItems = async (itemId) => {
+  const deleteItems = async (id) => {
     try {
-      await axios.delete(`${API_Link}counter/info/${itemId}`);
+      await axios.delete(`${API_Link}counter/info/${id}`);
       getItems();
+      console.log('Delete success');
     } catch (err) {
       console.log(err);
     }
@@ -58,8 +59,6 @@ export default function CounterInfoView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Heading</TableCell>
-              <TableCell>Sub Heading</TableCell>
               <TableCell>Menu</TableCell>
               <TableCell>Image</TableCell>
               <TableCell> Count </TableCell>
@@ -71,8 +70,6 @@ export default function CounterInfoView() {
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.heading} </TableCell>
-                <TableCell> {item.sub_heading} </TableCell>
                 <TableCell> {item.menu} </TableCell>
                 <TableCell>
                   <Avatar
@@ -86,11 +83,14 @@ export default function CounterInfoView() {
                 <TableCell> {item.sub_title} </TableCell>
                 <TableCell>
                   <Button
+                    component={Link}
+                    to={`/counter-update/${item.id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
+                    component={Link}
                     sx={{ ml: 1 }}
                     variant="contained"
                     color="error"

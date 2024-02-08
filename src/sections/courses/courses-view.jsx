@@ -70,7 +70,7 @@ export default function CoursesView() {
                 <TableCell> {item.title} </TableCell>
                 <TableCell> {item.description} </TableCell>
                 <TableCell>
-                  <Avatar alty={item.url} src={item.url} />
+                  <Avatar alty={item.image} src={item.url} />
                 </TableCell>
                 <TableCell>
                   <Button

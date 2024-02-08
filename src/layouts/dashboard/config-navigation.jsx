@@ -38,6 +38,16 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'Gallery Info',
+    path: '/gallery',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'Slider Info',
+    path: '/slider',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'Review',
     path: '/review',
     icon: icon('ic_user'),
@@ -45,6 +55,11 @@ const navConfig = [
   {
     title: 'Counter Info',
     path: '/counter',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'Faq Info',
+    path: '/faq',
     icon: icon('ic_user'),
   },
   {

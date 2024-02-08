@@ -17,20 +17,32 @@ export const CreateStoriesInfo = lazy(() => import('src/pages/stories-post'));
 export const ContentPage = lazy(() => import('src/pages/content'));
 export const ContentPost = lazy(() => import('src/pages/content-post'));
 export const ContentUpdate = lazy(() => import('src/pages/content-update'));
+export const GalleryInfo = lazy(() => import('src/pages/galleryInfo'));
+export const GalleryInfoCreate = lazy(() => import('src/pages/galleryInfoCreate'));
+export const GalleryInfoUpdate = lazy(() => import('src/pages/galleryInfoUpdate'));
 export const CompoanyInfo = lazy(() => import('src/pages/companyInfo'));
 export const CompanyInfoPost = lazy(() => import('src/pages/companyInfo-post'));
 export const CompanyInfoUpdate = lazy(() => import('src/pages/companyInfo-update'));
 export const Review = lazy(() => import('src/pages/review'));
 export const ReviewPost = lazy(() => import('src/pages/review-post'));
 export const ReviewUpdate = lazy(() => import('src/pages/review-update'));
+export const SliderView = lazy(() => import('src/pages/slider-info'));
+export const SliderCreate = lazy(() => import('src/pages/slider-create'));
+export const SliderUpdate = lazy(() => import('src/pages/slider-update'));
 export const CounterInfo = lazy(() => import('src/pages/counterInfo'));
 export const CounterPost = lazy(() => import('src/pages/counterPost'));
+export const CounterUpdate = lazy(() => import('src/pages/counterUpdate'));
 export const CoursesInfo = lazy(() => import('src/pages/courses'));
 export const CoursesPost = lazy(() => import('src/pages/coursesPost'));
 export const TeachersInfo = lazy(() => import('src/pages/teachers'));
+export const TeachersCreate = lazy(() => import('src/pages/teachers-create'));
+export const TeachersUpdate = lazy(() => import('src/pages/teachersUpdate'));
 export const FooterView = lazy(() => import('src/pages/footer-view'));
 export const FooterCreate = lazy(() => import('src/pages/footer-create'));
 export const FooterUpdate = lazy(() => import('src/pages/footer-update'));
+export const FaqView = lazy(() => import('src/pages/faqInfo'));
+export const FaqCreate = lazy(() => import('src/pages/faqInfoCreate'));
+export const FaqUpdate = lazy(() => import('src/pages/faqInfoUpdate'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -52,6 +64,9 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'create', element: <CreatePage /> },
         { path: 'post', element: <PostPage /> },
+        { path: 'gallery', element: <GalleryInfo /> },
+        { path: 'gallery-create', element: <GalleryInfoCreate /> },
+        { path: 'gallery-update/:id', element: <GalleryInfoUpdate /> },
         { path: 'update/:id', element: <UpdatePage /> },
         { path: 'social', element: <ViewSocialInfo /> },
         { path: 'social-create', element: <CreateSocialInfo /> },
@@ -64,17 +79,26 @@ export default function Router() {
         { path: 'company', element: <CompoanyInfo /> },
         { path: 'company-create', element: <CompanyInfoPost /> },
         { path: 'company/:id', element: <CompanyInfoUpdate /> },
+        { path: 'slider', element: <SliderView /> },
+        { path: 'slider-create', element: <SliderCreate /> },
+        { path: 'slider-update/:id', element: <SliderUpdate /> },
         { path: 'review', element: <Review /> },
         { path: 'review-create', element: <ReviewPost /> },
         { path: 'review/:id', element: <ReviewUpdate /> },
         { path: 'counter', element: <CounterInfo /> },
         { path: 'counter-create', element: <CounterPost /> },
+        { path: 'counter-update/:id', element: <CounterUpdate /> },
         { path: 'courses', element: <CoursesInfo /> },
         { path: 'courses-create', element: <CoursesPost /> },
         { path: 'teachers', element: <TeachersInfo /> },
+        { path: 'teachers-create', element: <TeachersCreate /> },
+        { path: 'teachers-update/:id', element: <TeachersUpdate /> },
         { path: 'footer', element: <FooterView /> },
         { path: 'footer-create', element: <FooterCreate /> },
         { path: 'footer/:id', element: <FooterUpdate /> },
+        { path: 'faq', element: <FaqView /> },
+        { path: 'faq-create', element: <FaqCreate /> },
+        { path: 'faq-update/:id', element: <FaqUpdate /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Stack,
@@ -18,35 +18,34 @@ import {
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
-export default function StoriesView() {
+export default function FaqInfo() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     getItems();
   }, []);
 
   const getItems = async () => {
-    const response = await axios.get(`${API_Link}stories/items`);
+    const response = await axios.get(`${API_Link}faq/info`);
     setItems(response.data);
-    console.log(response.data);
   };
 
-  const deleteItems = async (itemId) => {
+  const handleDelect = async (id) => {
     try {
-      await axios.delete(`${API_Link}stories/items/${itemId}`);
+      await axios.delete(`${API_Link}faq/info/${id}`);
       getItems();
     } catch (err) {
-      console.log(err);
+      console.error('Error', err);
     }
   };
 
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Stories Post</Typography>
+        <Typography variant="h4">FAQ Info Create</Typography>
 
         <Button
           component={Link}
-          to="/stories-create"
+          to="/faq-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -58,44 +57,37 @@ export default function StoriesView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Logo</TableCell>
+              <TableCell>Menu</TableCell>
+              <TableCell>Question</TableCell>
+              <TableCell>Answer</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Serial</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => (
+            {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.name} </TableCell>
-                <TableCell> {item.sub_title} </TableCell>
-                <TableCell>
-                  <iframe
-                    width="100"
-                    height="40"
-                    src={item.url}
-                    title="Greenland Training Centre Ltd."
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    className="thumbnail"
-                  />
-                </TableCell>
+                <TableCell> {item._menu} </TableCell>
+                <TableCell> {item._question} </TableCell>
+                <TableCell> {item._answer} </TableCell>
+                <TableCell> {item._status} </TableCell>
+                <TableCell> {item._serial} </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/social/${item.id}`}
+                    to={`/faq-update/${item._id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
                     component={Link}
-                    sx={{ ml: 1 }}
+                    sx={{ ml: 2 }}
                     variant="contained"
                     color="error"
-                    onClick={() => deleteItems(item.id)}
                     startIcon={<Iconify icon="ic:outline-delete" />}
+                    onClick={() => handleDelect(item.id)}
                   />
                 </TableCell>
               </TableRow>

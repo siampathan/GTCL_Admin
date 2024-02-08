@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'react-quill-style/dist/quill.snow.css';
 
 import { styled } from '@mui/system';
 import { Paper, Button, TextField, Container, Typography } from '@mui/material';
@@ -33,75 +34,41 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function CounterPostView() {
-  const [file, setFile] = useState(null);
-  const [count, setCount] = useState('');
+export default function TeachersCreateView() {
   const [title, setTitle] = useState('');
-  const [sub_title, setSubTitle] = useState('');
-  const [menu, setMenu] = useState('');
-  // const [selectedMenu, setSelectedMenu] = useState('');
+  const [designation, setDesignation] = useState('');
+  const [description, setDescription] = useState('');
+  const [file, setFile] = useState(null);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   getMenuItems();
-  // }, []);
-
-  // const getMenuItems = async () => {
-  //   try {
-  //     const response = await axios.get(`${API_Link}review/info`);
-  //     setMenuItems(response.data);
-  //   } catch (err) {
-  //     console.log('Error fetching Data', err);
-  //   }
-  // };
-
-  // const handleChange = (e) => {
-  //   setSelectedMenu(e.target.value);
-  //   console.log(e.target.value);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('menu', menu);
-      formData.append('title', title);
-      formData.append('sub_title', sub_title);
-      formData.append('count', count);
 
-      await axios.post(`${API_Link}counter/info`, formData);
-      navigate('/counter');
+      formData.append('title', title);
+      formData.append('designation', designation);
+      formData.append('description', description);
+      formData.append('file', file);
+      await axios.post(`${API_Link}teachers/info`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      navigate('/teachers');
+      console.log('Submission Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }
   };
-
   return (
     <StyledContainer sx={containerStyles}>
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Counter Info
+            Create Teachers Info
           </Typography>
-          {/* <FormControl>
-            <InputLabel id="demo-simple-select-label">Menu</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={selectedMenu}
-              label="Menu"
-              onChange={handleChange}
-            >
-              {menuItems.map((item) => (
-                <MenuItem key={item.id} value={item.menu}>
-                  {item.menu}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl> */}
-
           <TextField
             label="Title"
             type="text"
@@ -112,37 +79,27 @@ export default function CounterPostView() {
             margin="normal"
           />
           <TextField
-            label="Sub Title"
+            label="Designation"
             type="text"
-            placeholder="Enter subtitle"
+            placeholder="Enter Designation"
             variant="outlined"
-            onChange={(e) => setSubTitle(e.target.value)}
+            onChange={(e) => setDesignation(e.target.value)}
             fullWidth
             margin="normal"
           />
           <TextField
-            label="Menu"
-            type="number"
-            placeholder="Enter Menu"
+            label="Description"
+            type="text"
+            placeholder="Enter Description"
             variant="outlined"
-            onChange={(e) => setMenu(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             fullWidth
             margin="normal"
           />
           <TextField
-            label=""
             type="file"
             variant="outlined"
             onChange={(e) => setFile(e.target.files[0])}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Count"
-            type="text"
-            placeholder="Enter Count Number"
-            variant="outlined"
-            onChange={(e) => setCount(e.target.value)}
             fullWidth
             margin="normal"
           />
