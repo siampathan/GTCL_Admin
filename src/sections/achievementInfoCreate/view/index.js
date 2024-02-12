@@ -1,1 +1,1 @@
-export { default as SliderCreateView } from './sliderCreate-view';
+export { default as AchieveCreateView } from './achieveCreate-view';

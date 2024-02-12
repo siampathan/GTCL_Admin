@@ -18,7 +18,7 @@ const containerStyles = {
 const StyledContainer = styled(Container)(containerStyles);
 
 const paperStyles = {
-  width: '80%',
+  width: '90%',
   padding: (theme) => theme.spacing(3),
   borderRadius: (theme) => theme.spacing(1),
   boxShadow: 3,

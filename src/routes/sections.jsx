@@ -23,9 +23,13 @@ export const GalleryInfoUpdate = lazy(() => import('src/pages/galleryInfoUpdate'
 export const CompoanyInfo = lazy(() => import('src/pages/companyInfo'));
 export const CompanyInfoPost = lazy(() => import('src/pages/companyInfo-post'));
 export const CompanyInfoUpdate = lazy(() => import('src/pages/companyInfo-update'));
+export const AchieveInfo = lazy(() => import('src/pages/achievementInfo'));
+export const AchieveInfoCreate = lazy(() => import('src/pages/achievementCreate'));
+export const AchieveInfoUpdate = lazy(() => import('src/pages/achievementUpdate'));
 export const Review = lazy(() => import('src/pages/review'));
 export const ReviewPost = lazy(() => import('src/pages/review-post'));
 export const ReviewUpdate = lazy(() => import('src/pages/review-update'));
+export const RegisterInfo = lazy(() => import('src/pages/registerInfo'));
 export const SliderView = lazy(() => import('src/pages/slider-info'));
 export const SliderCreate = lazy(() => import('src/pages/slider-create'));
 export const SliderUpdate = lazy(() => import('src/pages/slider-update'));
@@ -79,12 +83,16 @@ export default function Router() {
         { path: 'company', element: <CompoanyInfo /> },
         { path: 'company-create', element: <CompanyInfoPost /> },
         { path: 'company/:id', element: <CompanyInfoUpdate /> },
+        { path: 'achieve', element: <AchieveInfo /> },
+        { path: 'achieve-create', element: <AchieveInfoCreate /> },
+        { path: 'achieve-update/:id', element: <AchieveInfoUpdate /> },
         { path: 'slider', element: <SliderView /> },
         { path: 'slider-create', element: <SliderCreate /> },
         { path: 'slider-update/:id', element: <SliderUpdate /> },
         { path: 'review', element: <Review /> },
         { path: 'review-create', element: <ReviewPost /> },
         { path: 'review/:id', element: <ReviewUpdate /> },
+        { path: 'register', element: <RegisterInfo /> },
         { path: 'counter', element: <CounterInfo /> },
         { path: 'counter-create', element: <CounterPost /> },
         { path: 'counter-update/:id', element: <CounterUpdate /> },

@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import { AchieveCreateView } from 'src/sections/achievementInfoCreate/view';
+import { RegisterInfoView } from 'src/sections/registerInfo/view';
 
 // ----------------------------------------------------------------------
 
-export default function CreatePage() {
+export default function ContentPage() {
   return (
     <>
       <Helmet>
         <title> User | Minimal UI </title>
       </Helmet>
 
-      <AchieveCreateView />
+      <RegisterInfoView />
     </>
   );
 }

@@ -1,1 +1,1 @@
-export { default as SliderInfoiew } from './slider-view';
+export { default as AchievementInfoView } from './achievementInfo-view';

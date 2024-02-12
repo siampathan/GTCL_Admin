@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
+import { AchieveInfoUpdate } from 'src/sections/achievementInfoUpdate/view';
+
 // ----------------------------------------------------------------------
 
 export default function CreatePage() {
@@ -9,7 +11,7 @@ export default function CreatePage() {
         <title> User | Minimal UI </title>
       </Helmet>
 
-      <h2>Achievement Update Section</h2>
+      <AchieveInfoUpdate />
     </>
   );
 }

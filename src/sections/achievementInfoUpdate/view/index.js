@@ -1,1 +1,1 @@
-export { default as SliderUpdate } from './sliderUpdate-view';
+export { default as AchieveInfoUpdate } from './achieveUpdate-view';

@@ -39,6 +39,7 @@ export default function ContentView() {
       console.log(err);
     }
   };
+
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>

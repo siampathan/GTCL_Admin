@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { styled } from '@mui/system';
 import { Paper, Button, Container, TextField, Typography } from '@mui/material';
@@ -17,7 +19,7 @@ const containerStyles = {
 const StyledContainer = styled(Container)(containerStyles);
 
 const paperStyles = {
-  width: '80%',
+  width: '90%',
   padding: (theme) => theme.spacing(3),
   borderRadius: (theme) => theme.spacing(1),
   boxShadow: 3,
@@ -33,80 +35,47 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function SliderInfoUpdate() {
+export default function AchieveCreateView() {
   const [menu, setMenu] = useState('');
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState('');
-  const [sub_title, setSubTitle] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
-  const { id } = useParams();
-
-  // const handleChange = (value) => {
-  //   setTagLine(value);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
       formData.append('title', title);
-      formData.append('sub_title', sub_title);
       formData.append('file', file);
       formData.append('description', description);
       formData.append('menu', menu);
-
-      await axios.patch(`${API_Link}slider/info/${id}`, formData, {
+      await axios.post(`${API_Link}achieve/info`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/slider');
+      navigate('/achieve');
+      toast.success('Submission successful!');
       console.log('Submission successful!');
     } catch (err) {
+      toast.error('Error submitting form', err.message);
       console.error('Error submitting form:', err.message);
     }
   };
-
   return (
     <StyledContainer sx={containerStyles}>
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Update Slider Info
+            Create Achieve Info
           </Typography>
-          <TextField
-            label="Menu"
-            type="number"
-            placeholder="Enter Menu"
-            variant="outlined"
-            onChange={(e) => setMenu(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
           <TextField
             label="Title"
             type="text"
             placeholder="Enter Title"
             variant="outlined"
             onChange={(e) => setTitle(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Sub Title"
-            type="text"
-            placeholder="Enter Sub Title"
-            variant="outlined"
-            onChange={(e) => setSubTitle(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label=""
-            type="file"
-            variant="outlined"
-            onChange={(e) => setFile(e.target.files[0])}
             fullWidth
             margin="normal"
           />
@@ -119,9 +88,27 @@ export default function SliderInfoUpdate() {
             fullWidth
             margin="normal"
           />
+          <TextField
+            label=""
+            type="file"
+            variant="outlined"
+            onChange={(e) => setFile(e.target.files[0])}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Menu"
+            type="number"
+            placeholder="Enter Menu"
+            variant="outlined"
+            onChange={(e) => setMenu(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
           <Button type="submit" variant="contained" color="success">
-            Update
+            Submit
           </Button>
+          <ToastContainer />
         </StyledForm>
       </StyledPaper>
     </StyledContainer>

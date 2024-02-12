@@ -41,7 +41,7 @@ export default function PostPage() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Post</Typography>
+        <Typography variant="h4">Create Menu</Typography>
 
         <Button
           component={Link}

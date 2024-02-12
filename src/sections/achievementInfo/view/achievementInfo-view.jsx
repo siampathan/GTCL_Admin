@@ -19,20 +19,20 @@ import {
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
-export default function SliderInfoView() {
+export default function AchievementInfoView() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     getItems();
   }, []);
 
   const getItems = async () => {
-    const response = await axios.get(`${API_Link}slider/info`);
+    const response = await axios.get(`${API_Link}achieve/info`);
     setItems(response.data);
   };
 
   const deleteItems = async (itemId) => {
     try {
-      await axios.delete(`${API_Link}slider/info/${itemId}`);
+      await axios.delete(`${API_Link}achieve/info/${itemId}`);
       getItems();
     } catch (err) {
       console.log(err);
@@ -46,7 +46,7 @@ export default function SliderInfoView() {
 
         <Button
           component={Link}
-          to="/slider-create"
+          to="/achieve-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -59,9 +59,8 @@ export default function SliderInfoView() {
           <TableHead>
             <TableRow>
               <TableCell>Title</TableCell>
-              <TableCell>Sub Title</TableCell>
-              <TableCell>Description</TableCell>
               <TableCell>Image</TableCell>
+              <TableCell>Description</TableCell>
               <TableCell>Menu</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
@@ -71,12 +70,6 @@ export default function SliderInfoView() {
               <TableRow key={item.id}>
                 <TableCell sx={{ maxWidth: 200, height: 150, overflowY: 'scroll' }}>
                   {item.title}
-                </TableCell>
-                <TableCell sx={{ maxWidth: 200, height: 150, overflowY: 'scroll' }}>
-                  {item.sub_title}
-                </TableCell>
-                <TableCell sx={{ maxWidth: 200, height: 150, overflowY: 'scroll' }}>
-                  {item.description}
                 </TableCell>
                 <TableCell>
                   <Avatar
@@ -90,11 +83,14 @@ export default function SliderInfoView() {
                     }}
                   />
                 </TableCell>
+                <TableCell sx={{ maxWidth: 200, height: 150, overflowY: 'scroll' }}>
+                  {item.description}
+                </TableCell>
                 <TableCell> {item.menu} </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/slider-update/${item.id}`}
+                    to={`/achieve-update/${item.id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
