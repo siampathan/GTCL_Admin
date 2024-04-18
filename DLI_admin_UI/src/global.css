@@ -1,0 +1,13 @@
+/* scrollbar */
+@import 'simplebar-react/dist/simplebar.min.css';
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #fff;
+  background: rgb(0, 81, 255);
+}
+
+::selection {
+  color: #fff;
+  background: rgb(4, 0, 255);
+}
