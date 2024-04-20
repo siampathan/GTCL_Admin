@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -25,10 +25,12 @@ import { bgGradient } from 'src/theme/css';
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
+import AuthContext from 'src/components/authContext/authContext';
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
+  const { login } = useContext(AuthContext);
   const theme = useTheme();
   const navigate = useNavigate();
   // const router = useRouter();
@@ -57,12 +59,11 @@ export default function LoginView() {
 
       const response = await axios.post(`${API_Link}login`, formData);
 
-      localStorage.setItem('token', response.data.token);
+      const token = response.data.token;
 
+      login(token);
       navigate('/');
     } catch (err) {
-      // console.log('Login Failed', err);
-      console.log(err.response.data.message);
       setError(err.response.data.message);
     }
   };

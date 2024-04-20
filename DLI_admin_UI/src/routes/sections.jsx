@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
-import { Outlet, Navigate, useRoutes } from 'react-router-dom';
+import { Outlet, Navigate, useRoutes, Routes } from 'react-router-dom';
 
-// import ProtectedRoute from 'src/components/protectedRoute/ProtectedRoute';
+import ProtectedRoute from 'src/components/protectedRoute/ProtectedRoute';
 
 import DashboardLayout from 'src/layouts/dashboard';
 
@@ -61,17 +61,44 @@ export default function Router() {
     {
       element: (
         <DashboardLayout>
-          <Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
         </DashboardLayout>
       ),
       children: [
-        { element: <IndexPage />, index: true },
-        { path: 'user', element: <UserPage /> },
+        {
+          element: (
+            <Routes>
+              <ProtectedRoute>
+                <IndexPage />
+              </ProtectedRoute>
+            </Routes>
+          ),
+          index: true,
+        },
+        {
+          path: 'user',
+          element: (
+            <Routes>
+              <ProtectedRoute>
+                <UserPage />
+              </ProtectedRoute>
+            </Routes>
+          ),
+        },
         { path: 'create', element: <CreatePage /> },
         { path: 'post', element: <PostPage /> },
-        { path: 'gallery', element: <GalleryInfo /> },
+        {
+          path: 'gallery',
+          element: (
+            <Routes>
+              <ProtectedRoute>
+                <GalleryInfo />
+              </ProtectedRoute>
+            </Routes>
+          ),
+        },
         { path: 'gallery-create', element: <GalleryInfoCreate /> },
         { path: 'gallery-update/:id', element: <GalleryInfoUpdate /> },
         { path: 'update/:id', element: <UpdatePage /> },
