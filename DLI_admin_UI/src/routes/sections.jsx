@@ -1,7 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Outlet, Navigate, useRoutes, Routes } from 'react-router-dom';
-
-import ProtectedRoute from 'src/components/protectedRoute/ProtectedRoute';
+import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
 import DashboardLayout from 'src/layouts/dashboard';
 
@@ -67,38 +65,11 @@ export default function Router() {
         </DashboardLayout>
       ),
       children: [
-        {
-          element: (
-            <Routes>
-              <ProtectedRoute>
-                <IndexPage />
-              </ProtectedRoute>
-            </Routes>
-          ),
-          index: true,
-        },
-        {
-          path: 'user',
-          element: (
-            <Routes>
-              <ProtectedRoute>
-                <UserPage />
-              </ProtectedRoute>
-            </Routes>
-          ),
-        },
+        { element: <IndexPage />, index: true },
+        { path: 'user', element: <UserPage /> },
         { path: 'create', element: <CreatePage /> },
         { path: 'post', element: <PostPage /> },
-        {
-          path: 'gallery',
-          element: (
-            <Routes>
-              <ProtectedRoute>
-                <GalleryInfo />
-              </ProtectedRoute>
-            </Routes>
-          ),
-        },
+        { path: 'gallery', element: <GalleryInfo /> },
         { path: 'gallery-create', element: <GalleryInfoCreate /> },
         { path: 'gallery-update/:id', element: <GalleryInfoUpdate /> },
         { path: 'update/:id', element: <UpdatePage /> },
