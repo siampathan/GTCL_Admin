@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-// import { Suspense } from 'react';
 
 import App from './app';
 
