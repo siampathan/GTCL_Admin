@@ -3,9 +3,13 @@ import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
 import DashboardLayout from 'src/layouts/dashboard';
 
+import GuestRoute from 'src/components/guestRoute/guestRoute';
+
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
+export const UserPost = lazy(() => import('src/pages/user-post'));
+export const UserUpdate = lazy(() => import('src/pages/user-update')) 
 export const CreatePage = lazy(() => import('src/pages/create'));
 export const PostPage = lazy(() => import('src/pages/post'));
 export const UpdatePage = lazy(() => import('src/pages/update'));
@@ -67,6 +71,8 @@ export default function Router() {
       children: [
         { element: <IndexPage />, index: true },
         { path: 'user', element: <UserPage /> },
+        { path: 'user-create', element: <UserPost /> },
+        { path: 'user-update/:id', element: <UserUpdate /> },
         { path: 'create', element: <CreatePage /> },
         { path: 'post', element: <PostPage /> },
         { path: 'gallery', element: <GalleryInfo /> },
@@ -114,7 +120,7 @@ export default function Router() {
     },
     {
       path: 'login',
-      element: <LoginPage />,
+      element: <GuestRoute />,
     },
     {
       path: 'forget',
