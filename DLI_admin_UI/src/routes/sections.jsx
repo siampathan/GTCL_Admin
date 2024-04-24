@@ -9,7 +9,7 @@ export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const UserPost = lazy(() => import('src/pages/user-post'));
-export const UserUpdate = lazy(() => import('src/pages/user-update')) 
+export const UserUpdate = lazy(() => import('src/pages/user-update'));
 export const CreatePage = lazy(() => import('src/pages/create'));
 export const PostPage = lazy(() => import('src/pages/post'));
 export const UpdatePage = lazy(() => import('src/pages/update'));
@@ -18,6 +18,9 @@ export const SocialInfoPost = lazy(() => import('src/pages/social-post'));
 export const SocialUpdate = lazy(() => import('src/pages/social-update'));
 export const ViewStoriesInfo = lazy(() => import('src/pages/stories-info'));
 export const CreateStoriesInfo = lazy(() => import('src/pages/stories-post'));
+export const DocumentInfo = lazy(() => import('src/pages/document'));
+export const DocumentInfoPost = lazy(() => import('src/pages/documentCreate'));
+export const DocumentInfoUpdate = lazy(() => import('src/pages/documentUpdate'));
 export const AboutPage = lazy(() => import('src/pages/content'));
 export const AboutUpdate = lazy(() => import('src/pages/content-update'));
 export const ContentPost = lazy(() => import('src/pages/content-post'));
@@ -75,6 +78,9 @@ export default function Router() {
         { path: 'user-update/:id', element: <UserUpdate /> },
         { path: 'create', element: <CreatePage /> },
         { path: 'post', element: <PostPage /> },
+        { path: 'document', element: <DocumentInfo /> },
+        { path: 'document-create', element: <DocumentInfoPost /> },
+        { path: 'document-update/:id', element: <DocumentInfoUpdate /> },
         { path: 'gallery', element: <GalleryInfo /> },
         { path: 'gallery-create', element: <GalleryInfoCreate /> },
         { path: 'gallery-update/:id', element: <GalleryInfoUpdate /> },

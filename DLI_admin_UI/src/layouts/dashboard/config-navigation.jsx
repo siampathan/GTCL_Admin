@@ -18,6 +18,11 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'Document',
+    path: '/document',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'Menu',
     path: '/post',
     icon: icon('ic_menu'),
