@@ -71,7 +71,11 @@ export default function DocumentView() {
                 <TableCell> {item.header} </TableCell>
                 <TableCell> {item.title} </TableCell>
                 <TableCell> {item.subTitle} </TableCell>
-                <TableCell> {item.url} </TableCell>
+                <TableCell>
+                  <Link target="_blank" to={item.url}>
+                    {item.title}
+                  </Link>
+                </TableCell>
                 <TableCell>
                   <Button
                     component={Link}

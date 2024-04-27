@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import {
   Stack,
@@ -20,7 +20,7 @@ import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
 export default function UserList() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [users, setUsers] = useState([]);
 
@@ -42,9 +42,7 @@ export default function UserList() {
     }
   };
 
-  const getRoleValue = (role) => {
-    return role === 1 ? 'Admin' : 'User';
-  };
+  const getRoleValue = (role) => (role === 1 ? 'Admin' : 'User');
 
   return (
     <Container>

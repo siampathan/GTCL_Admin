@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/system';
@@ -43,7 +43,7 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function userUpdateView() {
+export default function UserUpdateView() {
   const { id } = useParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,6 +59,7 @@ export default function userUpdateView() {
     const fetchUser = async () => {
       try {
         const response = await axios.get(`${API_Link}get-user-by-id/${id}`);
+
         setEmail(response.data.data.email);
         setPassword(response.data.data.password);
         setRole(response.data.data.role);
@@ -74,9 +75,9 @@ export default function userUpdateView() {
 
     try {
       const response = await axios.patch(`${API_Link}edit-user-by-id/${id}`, {
-        email: email,
-        password: password,
-        role: role,
+        email,
+        password,
+        role,
       });
 
       console.log('UPDATED', response);
