@@ -42,7 +42,7 @@ export default function FaqInfo() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">License Info Create</Typography>
+        <Typography variant="h4">All License Info</Typography>
 
         <Button
           component={Link}
@@ -51,7 +51,7 @@ export default function FaqInfo() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Info
         </Button>
       </Stack>
       <Paper>

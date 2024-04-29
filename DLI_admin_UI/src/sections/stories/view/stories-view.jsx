@@ -42,7 +42,7 @@ export default function StoriesView() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Stories Post</Typography>
+        <Typography variant="h4">All Stories</Typography>
 
         <Button
           component={Link}
@@ -51,7 +51,7 @@ export default function StoriesView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Story
         </Button>
       </Stack>
       <Paper>

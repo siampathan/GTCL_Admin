@@ -43,11 +43,13 @@ const formStyles = {
 
 const StyledForm = styled('form')(formStyles);
 
-export default function userUpdateView() {
+export default function UserUpdateView() {
   const { id } = useParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [role, setRole] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
 
   const navigate = useNavigate();
 
@@ -72,18 +74,21 @@ export default function userUpdateView() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password !== confirmPassword) return setPasswordsMatch(false);
+
     try {
-      const response = await axios.patch(`${API_Link}edit-user-by-id/${id}`, {
-        email: email,
-        password: password,
-        role: role,
+      await axios.patch(`${API_Link}edit-user-by-id/${id}`, {
+        email,
+        password,
+        role,
       });
 
-      console.log('UPDATED', response);
       navigate('/user');
     } catch (err) {
       console.error('Get an Error ', err);
     }
+
+    return null;
   };
 
   return (
@@ -104,10 +109,20 @@ export default function userUpdateView() {
             margin="normal"
           />
           <TextField
-            label="Password"
-            type="text"
+            label="Change Password"
+            type="password"
             variant="outlined"
             onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Confirm New Password"
+            type="password"
+            variant="outlined"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            error={!passwordsMatch}
+            helperText={!passwordsMatch && "Passwords don't match"}
             fullWidth
             margin="normal"
           />

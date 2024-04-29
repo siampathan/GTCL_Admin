@@ -23,13 +23,13 @@ export default function CompanyInfoView() {
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}message`);
-    setItems(response.data);
+    setItems(response.data.rows);
   };
 
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Review Info</Typography>
+        <Typography variant="h4">All Client Messages</Typography>
       </Stack>
       <Paper>
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>

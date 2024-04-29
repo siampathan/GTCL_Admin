@@ -29,7 +29,7 @@ export default function RegisterInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Register Info</Typography>
+        <Typography variant="h4">All Register Info</Typography>
       </Stack>
       <Paper>
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>

@@ -42,7 +42,7 @@ export default function GalleryInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Gallery Info</Typography>
+        <Typography variant="h4">All Gallery Info</Typography>
 
         <Button
           component={Link}
@@ -51,7 +51,7 @@ export default function GalleryInfoView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Info
         </Button>
       </Stack>
       <Paper>

@@ -42,7 +42,7 @@ export default function AchievementInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Slider Info</Typography>
+        <Typography variant="h4">All Achievements</Typography>
 
         <Button
           component={Link}
@@ -51,7 +51,7 @@ export default function AchievementInfoView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Achievement
         </Button>
       </Stack>
       <Paper>

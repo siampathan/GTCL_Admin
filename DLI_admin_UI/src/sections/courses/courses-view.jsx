@@ -42,7 +42,7 @@ export default function CoursesView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Courses Info</Typography>
+        <Typography variant="h4">All Courses</Typography>
 
         <Button
           component={Link}
@@ -51,7 +51,7 @@ export default function CoursesView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Course
         </Button>
       </Stack>
       <Paper>

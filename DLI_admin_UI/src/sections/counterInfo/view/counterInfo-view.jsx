@@ -43,7 +43,7 @@ export default function CounterInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Counter Info</Typography>
+        <Typography variant="h4">All Clients</Typography>
 
         <Button
           component={Link}
@@ -52,7 +52,7 @@ export default function CounterInfoView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Client
         </Button>
       </Stack>
       <Paper>

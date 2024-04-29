@@ -41,7 +41,7 @@ export default function SocialInfo() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Post</Typography>
+        <Typography variant="h4">All Social Links</Typography>
 
         <Button
           component={Link}
@@ -50,7 +50,7 @@ export default function SocialInfo() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Link
         </Button>
       </Stack>
       <Paper>

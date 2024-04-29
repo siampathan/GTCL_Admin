@@ -54,7 +54,7 @@ export default function PostPage() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Item
         </Button>
       </Stack>
       <Paper>

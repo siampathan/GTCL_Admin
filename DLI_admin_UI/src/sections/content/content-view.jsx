@@ -43,7 +43,7 @@ export default function AboutView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">About Info</Typography>
+        <Typography variant="h4">All About Info</Typography>
 
         <Button
           component={Link}
@@ -52,7 +52,7 @@ export default function AboutView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Info
         </Button>
       </Stack>
       <Paper>

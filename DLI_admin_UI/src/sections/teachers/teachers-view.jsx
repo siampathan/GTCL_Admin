@@ -42,7 +42,7 @@ export default function TeachersView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Teachers Info</Typography>
+        <Typography variant="h4">All Teachers</Typography>
 
         <Button
           component={Link}

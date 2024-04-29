@@ -42,7 +42,7 @@ export default function SliderInfoView() {
   return (
     <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Slider Info</Typography>
+        <Typography variant="h4">All Slider Info</Typography>
 
         <Button
           component={Link}
@@ -51,7 +51,7 @@ export default function SliderInfoView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Info
         </Button>
       </Stack>
       <Paper>

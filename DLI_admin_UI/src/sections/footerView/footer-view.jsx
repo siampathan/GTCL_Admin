@@ -43,7 +43,7 @@ export default function FooterView() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Content Info</Typography>
+        <Typography variant="h4">All Contents</Typography>
 
         <Button
           component={Link}
@@ -52,7 +52,7 @@ export default function FooterView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Post
+          Add Content
         </Button>
       </Stack>
       <Paper>

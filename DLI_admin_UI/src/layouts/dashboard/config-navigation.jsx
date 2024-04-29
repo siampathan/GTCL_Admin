@@ -13,17 +13,17 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
+    title: 'users',
     path: '/user',
     icon: icon('ic_user'),
   },
   {
-    title: 'Menu',
+    title: 'Menu Items',
     path: '/post',
     icon: icon('ic_menu'),
   },
   {
-    title: 'Social Info',
+    title: 'Social Links',
     path: '/social',
     icon: icon('ic_share'),
   },
@@ -33,12 +33,12 @@ const navConfig = [
     icon: icon('ic_about'),
   },
   {
-    title: 'Jobs Info',
+    title: 'Jobs',
     path: '/company',
     icon: icon('ic_jobs'),
   },
   {
-    title: 'Achievement Info',
+    title: 'Achievements',
     path: '/achieve',
     icon: icon('ic_achieve'),
   },
@@ -48,12 +48,12 @@ const navConfig = [
     icon: icon('ic_gallery'),
   },
   {
-    title: 'Slider Info',
+    title: 'Sliders',
     path: '/slider',
     icon: icon('ic_slider'),
   },
   {
-    title: 'Client Message',
+    title: 'Client Messages',
     path: '/review',
     icon: icon('ic_client'),
   },
@@ -63,7 +63,7 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
-    title: 'Country Info',
+    title: 'Clients',
     path: '/counter',
     icon: icon('ic_country'),
   },
@@ -73,12 +73,17 @@ const navConfig = [
     icon: icon('ic_license'),
   },
   {
-    title: 'Content Info',
+    title: 'Contents',
     path: '/footer',
     icon: icon('ic_content'),
   },
   {
-    title: 'Stories Info',
+    title: 'Components',
+    path: '/component',
+    icon: icon('ic_content'),
+  },
+  {
+    title: 'Stories',
     path: '/stories',
     icon: icon('ic_user'),
   },
@@ -92,16 +97,16 @@ const navConfig = [
     path: '/teachers',
     icon: icon('ic_user'),
   },
-  {
-    title: 'product',
-    path: '/products',
-    icon: icon('ic_cart'),
-  },
-  {
-    title: 'blog',
-    path: '/blog',
-    icon: icon('ic_blog'),
-  },
+  // {
+  //   title: 'product',
+  //   path: '/products',
+  //   icon: icon('ic_cart'),
+  // },
+  // {
+  //   title: 'blog',
+  //   path: '/blog',
+  //   icon: icon('ic_blog'),
+  // },
   // {
   //   title: 'login',
   //   path: '/login',

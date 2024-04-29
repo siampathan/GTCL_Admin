@@ -76,7 +76,7 @@ export default function CreateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Menu
+            All Menu Items
           </Typography>
           <TextField
             label="Menu"

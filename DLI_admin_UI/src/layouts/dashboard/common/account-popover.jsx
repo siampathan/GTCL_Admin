@@ -1,5 +1,6 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -14,21 +15,24 @@ import { account } from 'src/_mock/account';
 
 import AuthContext from 'src/components/authContext/authContext';
 
+import { API_Link } from 'src/components/api/api';
+
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: 'eva:home-fill',
+    link: '/',
   },
   {
     label: 'Profile',
     icon: 'eva:person-fill',
   },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
+  // {
+  //   label: 'Settings',
+  //   icon: 'eva:settings-2-fill',
+  // },
 ];
 
 // ----------------------------------------------------------------------
@@ -37,6 +41,11 @@ export default function AccountPopover() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(null);
   const { logout } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    getLoggedInUserInfo();
+  }, []);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -51,6 +60,11 @@ export default function AccountPopover() {
 
     logout();
     navigate('/login');
+  };
+
+  const getLoggedInUserInfo = async () => {
+    const response = await axios.get(`${API_Link}get-logged-in-user-info`);
+    setEmail(response.data.data.email);
   };
 
   return (
@@ -100,7 +114,7 @@ export default function AccountPopover() {
             {account.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {email}
           </Typography>
         </Box>
 
@@ -108,7 +122,9 @@ export default function AccountPopover() {
 
         {MENU_OPTIONS.map((option) => (
           <MenuItem key={option.label} onClick={handleClose}>
-            {option.label}
+            <Link to={option.link} style={{ textDecoration: 'none' }}>
+              {option.label}
+            </Link>
           </MenuItem>
         ))}
 

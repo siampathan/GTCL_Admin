@@ -19,39 +19,39 @@ import {
 import Iconify from 'src/components/iconify';
 import { API_Link } from 'src/components/api/api';
 
-export default function CompanyInfoView() {
-  const [items, setItems] = useState([]);
+export default function ComponentList() {
+  const [components, setComponents] = useState([]);
+
   useEffect(() => {
-    getItems();
+    getComponents();
   }, []);
 
-  const getItems = async () => {
-    const response = await axios.get(`${API_Link}jobs`);
-    setItems(response.data);
+  const getComponents = async () => {
+    const response = await axios.get(`${API_Link}component`);
+    setComponents(response.data);
   };
 
-  const deleteItems = async (itemId) => {
+  const deleteComponent = async (userId) => {
     try {
-      await axios.delete(`${API_Link}jobs/${itemId}`);
-      getItems();
+      await axios.delete(`${API_Link}component/${compId}`);
+      getUsers();
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">All Jobs Info</Typography>
-
+        <Typography variant="h4">All Components</Typography>
         <Button
           component={Link}
-          to="/company-create"
+          to="/component-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Info
+          Add Component
         </Button>
       </Stack>
       <Paper>
@@ -59,40 +59,45 @@ export default function CompanyInfoView() {
           <TableHead>
             <TableRow>
               <TableCell>Menu</TableCell>
+              <TableCell>Content</TableCell>
+              <TableCell>Heading</TableCell>
+              <TableCell>Sub Heading</TableCell>
               <TableCell>Title</TableCell>
-              <TableCell>Job List</TableCell>
+              <TableCell>Sub Title</TableCell>
+              <TableCell>Description</TableCell>
               <TableCell>Image</TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell>Button</TableCell>
+              <TableCell>Link</TableCell>
+              <TableCell>Serial</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell> {item.menu} </TableCell>
-                <TableCell>{item.title}</TableCell>
-                <TableCell>{item.job_list}</TableCell>
-                {/* <TableCell>
-                  <iframe
-                    title="Google Map"
-                    width="300"
-                    height="200"
-                    style={{ border: 0 }}
-                    loading="lazy"
-                    allowFullScreen
-                    src={`${item.map_view}`}
-                  />
-                </TableCell> */}
+            {components.map((component) => (
+              <TableRow key={component.id}>
+                <TableCell> {component.menu} </TableCell>
+                <TableCell> {component.content} </TableCell>
+                <TableCell> {component.heading} </TableCell>
+                <TableCell> {component.sub_heading} </TableCell>
+                <TableCell> {component.title} </TableCell>
+                <TableCell> {component.sub_title} </TableCell>
+                <TableCell> {component.description} </TableCell>
                 <TableCell>
                   <Avatar
-                    src={item.url}
-                    alty={item.image}
+                    src={component.url}
+                    alt={component.image}
                     style={{ width: '100px', height: '90px', borderRadius: '10px' }}
                   />
                 </TableCell>
+                <TableCell> {component.button} </TableCell>
+                <TableCell> {component.link} </TableCell>
+                <TableCell> {component.serial} </TableCell>
+                <TableCell> {component.status} </TableCell>
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/company/${item.id}`}
+                    to={`/user-update/${component.id}`}
                     variant="contained"
                     color="primary"
                     startIcon={<Iconify icon="mdi:edit" />}
@@ -102,7 +107,7 @@ export default function CompanyInfoView() {
                     sx={{ ml: 1 }}
                     variant="contained"
                     color="error"
-                    onClick={() => deleteItems(item.id)}
+                    onClick={() => deleteComponent(component.id)}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>
