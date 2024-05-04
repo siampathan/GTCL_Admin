@@ -17,7 +17,7 @@ import { bgGradient } from 'src/theme/css';
 
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
-import { API_Link, setAuthToken, urlInstance } from 'src/components/api/api';
+import { API_Link } from 'src/components/api/api';
 import AuthContext from 'src/components/authContext/authContext';
 
 // ----------------------------------------------------------------------
@@ -51,7 +51,7 @@ export default function LoginView() {
 
       const response = await axios.post(`${API_Link}login`, formData);
 
-      const token = response.data.token;
+      const { token } = response.data.token;
 
       login(token);
 

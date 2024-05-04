@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -13,9 +13,8 @@ import IconButton from '@mui/material/IconButton';
 
 import { account } from 'src/_mock/account';
 
-import AuthContext from 'src/components/authContext/authContext';
-
 import { API_Link } from 'src/components/api/api';
+import AuthContext from 'src/components/authContext/authContext';
 
 // ----------------------------------------------------------------------
 

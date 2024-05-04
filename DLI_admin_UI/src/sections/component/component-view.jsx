@@ -33,8 +33,8 @@ export default function ComponentList() {
 
   const deleteComponent = async (userId) => {
     try {
-      await axios.delete(`${API_Link}component/${compId}`);
-      getUsers();
+      await axios.delete(`${API_Link}component/${userId}`);
+      getComponents();
     } catch (err) {
       console.log(err);
     }

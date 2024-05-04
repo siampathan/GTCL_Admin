@@ -52,6 +52,7 @@ export default function ComponentCreate() {
   const [sub_heading, setSubHeading] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
+  const [menuSelected, setMenuSelected] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const [selectedMenu, setSelectedMenu] = useState('');
   const [contentItems, setContentItems] = useState([]);
@@ -64,11 +65,11 @@ export default function ComponentCreate() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getParentMenuId();
-    getParentContentId();
+    getMenu();
+    // getParentContentId();
   }, []);
 
-  const getParentMenuId = async () => {
+  const getMenu = async () => {
     try {
       const response = await axios.get(`${API_Link}menu`);
       setMenuItems(response.data);
@@ -77,14 +78,14 @@ export default function ComponentCreate() {
     }
   };
 
-  const getParentContentId = async () => {
-    try {
-      const response = await axios.get(`${API_Link}content`);
-      setContentItems(response.data);
-    } catch (err) {
-      console.error('Error Fetching Data', err);
-    }
-  };
+  // const getParentContentId = async () => {
+  //   try {
+  //     const response = await axios.get(`${API_Link}content`);
+  //     setContentItems(response.data);
+  //   } catch (err) {
+  //     console.error('Error Fetching Data', err);
+  //   }
+  // };
 
   const handleDescription = (value) => {
     setDescription(value);
@@ -92,6 +93,16 @@ export default function ComponentCreate() {
 
   const handleMenuChange = (e) => {
     setSelectedMenu(e.target.value);
+    setMenuSelected(e.target.value !== 'Select');
+
+    axios
+      .get(`${API_Link}content`)
+      .then((response) => {
+        setSectionlist(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleContentChange = (e) => {
@@ -162,15 +173,18 @@ export default function ComponentCreate() {
               value={selectedContent}
               label="Content"
               onChange={handleContentChange}
+              disabled={!menuSelected}
             >
               <MenuItem key={0} value="Select">
                 Select
               </MenuItem>
-              {contentItems.map((item) => (
-                <MenuItem key={item.id} value={item.id}>
-                  {item.title}
-                </MenuItem>
-              ))}
+              {contentItems
+                .filter((item) => item.menu === selectedMenu)
+                .map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    {item.title}
+                  </MenuItem>
+                ))}
             </Select>
           </FormControl>
 
