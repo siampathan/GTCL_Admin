@@ -71,7 +71,7 @@ export default function UserCreate() {
       await axios.post(`${API_Link}register`, formateData);
       navigate('/user');
     } catch (err) {
-      console.error('Got an Error !', err);
+      console.error('Got an Error!', err);
     }
 
     return null;

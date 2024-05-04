@@ -90,7 +90,7 @@ export default function ComponentCreate() {
 
       const data = await response.data;
 
-      const content = data.filter((item) => item.menu == e.target.value);
+      const content = data.filter((item) => Number(item.menu) === e.target.value);
 
       setContentItems(content);
     } catch (err) {

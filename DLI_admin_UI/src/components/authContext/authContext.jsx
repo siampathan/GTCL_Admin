@@ -7,11 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    () =>
-      // Check if the user is already logged in by accessing localStorage
-      localStorage.getItem('isLoggedIn') === 'true'
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem('isLoggedIn') === 'true');
 
   useEffect(() => {
     // Check authentication status
