@@ -66,7 +66,6 @@ export default function ComponentCreate() {
 
   useEffect(() => {
     getMenu();
-    // getParentContentId();
   }, []);
 
   const getMenu = async () => {
@@ -78,31 +77,25 @@ export default function ComponentCreate() {
     }
   };
 
-  // const getParentContentId = async () => {
-  //   try {
-  //     const response = await axios.get(`${API_Link}content`);
-  //     setContentItems(response.data);
-  //   } catch (err) {
-  //     console.error('Error Fetching Data', err);
-  //   }
-  // };
-
   const handleDescription = (value) => {
     setDescription(value);
   };
 
-  const handleMenuChange = (e) => {
+  const handleMenuChange = async (e) => {
     setSelectedMenu(e.target.value);
     setMenuSelected(e.target.value !== 'Select');
 
-    axios
-      .get(`${API_Link}content`)
-      .then((response) => {
-        setSectionlist(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const response = await axios.get(`${API_Link}content`);
+
+      const data = await response.data;
+
+      const content = data.filter((item) => item.menu == e.target.value);
+
+      setContentItems(content);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleContentChange = (e) => {
@@ -178,13 +171,11 @@ export default function ComponentCreate() {
               <MenuItem key={0} value="Select">
                 Select
               </MenuItem>
-              {contentItems
-                .filter((item) => item.menu === selectedMenu)
-                .map((item) => (
-                  <MenuItem key={item.id} value={item.id}>
-                    {item.title}
-                  </MenuItem>
-                ))}
+              {contentItems.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.heading}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 

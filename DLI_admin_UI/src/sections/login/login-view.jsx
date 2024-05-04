@@ -51,7 +51,7 @@ export default function LoginView() {
 
       const response = await axios.post(`${API_Link}login`, formData);
 
-      const { token } = response.data.token;
+      const token = response.data.token;
 
       login(token);
 

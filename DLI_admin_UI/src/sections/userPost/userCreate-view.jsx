@@ -47,6 +47,9 @@ export default function UserCreate() {
   const [role, setRole] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+
   const navigate = useNavigate();
 
   const handleRole = (e) => {
@@ -55,6 +58,8 @@ export default function UserCreate() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) return setPasswordsMatch(false);
 
     try {
       const formateData = new FormData();
@@ -68,6 +73,8 @@ export default function UserCreate() {
     } catch (err) {
       console.error('Got an Error !', err);
     }
+
+    return null;
   };
 
   return (
@@ -92,6 +99,16 @@ export default function UserCreate() {
             placeholder="Enter Password"
             variant="outlined"
             onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Confirm New Password"
+            type="password"
+            variant="outlined"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            error={!passwordsMatch}
+            helperText={!passwordsMatch && "Passwords don't match"}
             fullWidth
             margin="normal"
           />

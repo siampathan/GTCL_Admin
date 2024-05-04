@@ -71,24 +71,36 @@ export default function UserUpdateView() {
     fetchUser();
   }, [id]);
 
+  useEffect(() => {
+    if (password.trim() === '' && confirmPassword.trim() === '') {
+      setPasswordsMatch(true);
+    }
+  }, [password, confirmPassword]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) return setPasswordsMatch(false);
+    if (password.trim() !== '' && confirmPassword.trim() !== '' && password !== confirmPassword) {
+      setPasswordsMatch(false);
+      return;
+    }
 
     try {
-      await axios.patch(`${API_Link}edit-user-by-id/${id}`, {
+      const userData = {
         email,
-        password,
         role,
-      });
+      };
+
+      if (password.trim() !== '') {
+        userData.password = password;
+      }
+
+      await axios.patch(`${API_Link}edit-user-by-id/${id}`, userData);
 
       navigate('/user');
     } catch (err) {
       console.error('Get an Error ', err);
     }
-
-    return null;
   };
 
   return (
