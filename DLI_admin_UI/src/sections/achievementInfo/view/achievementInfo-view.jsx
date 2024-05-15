@@ -58,10 +58,10 @@ export default function AchievementInfoView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
+              <TableCell>Menu</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Description</TableCell>
               <TableCell>Image</TableCell>
-              <TableCell>Menu</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>

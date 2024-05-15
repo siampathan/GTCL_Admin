@@ -13,6 +13,11 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
+    title: 'Company Profile',
+    path: '/companyprofile',
+    icon: icon('ic_company'),
+  },
+  {
     title: 'users',
     path: '/user',
     icon: icon('ic_user'),
@@ -21,6 +26,16 @@ const navConfig = [
     title: 'Menu Items',
     path: '/post',
     icon: icon('ic_menu'),
+  },
+  {
+    title: 'Contents',
+    path: '/footer',
+    icon: icon('ic_content'),
+  },
+  {
+    title: 'Components',
+    path: '/component',
+    icon: icon('ic_component'),
   },
   {
     title: 'Social Links',
@@ -58,11 +73,6 @@ const navConfig = [
     icon: icon('ic_client'),
   },
   {
-    title: 'Register Info',
-    path: '/register',
-    icon: icon('ic_user'),
-  },
-  {
     title: 'Clients',
     path: '/counter',
     icon: icon('ic_country'),
@@ -72,31 +82,26 @@ const navConfig = [
     path: '/faq',
     icon: icon('ic_license'),
   },
-  {
-    title: 'Contents',
-    path: '/footer',
-    icon: icon('ic_content'),
-  },
-  {
-    title: 'Components',
-    path: '/component',
-    icon: icon('ic_content'),
-  },
-  {
-    title: 'Stories',
-    path: '/stories',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'Courses',
-    path: '/courses',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'Teachers',
-    path: '/teachers',
-    icon: icon('ic_user'),
-  },
+  // {
+  //   title: 'Register Info',
+  //   path: '/register',
+  //   icon: icon('ic_register'),
+  // },
+  // {
+  //   title: 'Stories',
+  //   path: '/stories',
+  //   icon: icon('ic_story'),
+  // },
+  // {
+  //   title: 'Courses',
+  //   path: '/courses',
+  //   icon: icon('ic_course'),
+  // },
+  // {
+  //   title: 'Teachers',
+  //   path: '/teachers',
+  //   icon: icon('ic_teacher'),
+  // },
   // {
   //   title: 'product',
   //   path: '/products',

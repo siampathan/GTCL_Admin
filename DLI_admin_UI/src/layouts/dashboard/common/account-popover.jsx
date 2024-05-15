@@ -11,8 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
-import { account } from 'src/_mock/account';
-
 import { API_Link } from 'src/components/api/api';
 import AuthContext from 'src/components/authContext/authContext';
 
@@ -41,6 +39,8 @@ export default function AccountPopover() {
   const [open, setOpen] = useState(null);
   const { logout } = useContext(AuthContext);
   const [email, setEmail] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
 
   useEffect(() => {
     getLoggedInUserInfo();
@@ -64,6 +64,8 @@ export default function AccountPopover() {
   const getLoggedInUserInfo = async () => {
     const response = await axios.get(`${API_Link}get-logged-in-user-info`);
     setEmail(response.data.data.email);
+    setFirstName(response.data.data.firstname);
+    setLastName(response.data.data.lastname);
   };
 
   return (
@@ -81,15 +83,13 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          src={account.photoURL}
-          alt={account.displayName}
           sx={{
             width: 36,
             height: 36,
             border: (theme) => `solid 2px ${theme.palette.background.default}`,
           }}
         >
-          {account.displayName.charAt(0).toUpperCase()}
+          {firstname.charAt(0).toUpperCase()}
         </Avatar>
       </IconButton>
 
@@ -110,7 +110,8 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {firstname}&nbsp;
+            {lastname}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {email}
@@ -120,11 +121,11 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         {MENU_OPTIONS.map((option) => (
-          <MenuItem key={option.label} onClick={handleClose}>
-            <Link to={option.link} style={{ textDecoration: 'none' }}>
+          <Link to={option.link} style={{ textDecoration: 'none' }}>
+            <MenuItem key={option.label} onClick={handleClose}>
               {option.label}
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </Link>
         ))}
 
         <Divider sx={{ borderStyle: 'dashed', m: 0 }} />

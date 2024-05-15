@@ -10,6 +10,8 @@ export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const UserPost = lazy(() => import('src/pages/user-post'));
 export const UserUpdate = lazy(() => import('src/pages/user-update'));
+export const CompanyprofileUpdate = lazy(() => import('src/pages/companyprofileUpdate'));
+export const CompanyprofileView = lazy(() => import('src/pages/companyprofile'));
 export const ComponentList = lazy(() => import('src/pages/component'));
 export const ComponentPost = lazy(() => import('src/pages/component-post'));
 export const CreatePage = lazy(() => import('src/pages/create'));
@@ -75,6 +77,8 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'user-create', element: <UserPost /> },
         { path: 'user-update/:id', element: <UserUpdate /> },
+        { path: 'companyprofile-update/:id', element: <CompanyprofileUpdate /> },
+        { path: 'companyprofile', element: <CompanyprofileView /> },
         { path: 'component', element: <ComponentList /> },
         { path: 'component-create', element: <ComponentPost /> },
         { path: 'create', element: <CreatePage /> },

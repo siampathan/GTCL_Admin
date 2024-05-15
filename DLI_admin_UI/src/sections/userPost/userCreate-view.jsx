@@ -47,6 +47,8 @@ export default function UserCreate() {
   const [role, setRole] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(true);
 
@@ -65,6 +67,8 @@ export default function UserCreate() {
       const formateData = new FormData();
 
       formateData.append('email', email);
+      formateData.append('firstname', firstname);
+      formateData.append('lastname', lastname);
       formateData.append('password', password);
       formateData.append('role', role);
 
@@ -90,6 +94,24 @@ export default function UserCreate() {
             placeholder="Enter Email"
             variant="outlined"
             onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Firstname"
+            type="text"
+            placeholder="Enter Firstname"
+            variant="outlined"
+            onChange={(e) => setFirstName(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Lastname"
+            type="text"
+            placeholder="Enter Lastname"
+            variant="outlined"
+            onChange={(e) => setLastName(e.target.value)}
             fullWidth
             margin="normal"
           />

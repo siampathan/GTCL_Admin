@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -19,6 +20,7 @@ import { account } from 'src/_mock/account';
 
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
+import { API_Link } from 'src/components/api/api';
 
 import { NAV } from './config-layout';
 import navConfig from './config-navigation';
@@ -26,9 +28,16 @@ import navConfig from './config-navigation';
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+
   const pathname = usePathname();
 
   const upLg = useResponsive('up', 'lg');
+
+  useEffect(() => {
+    getLoggedInUserInfo();
+  }, []);
 
   useEffect(() => {
     if (openNav) {
@@ -36,6 +45,12 @@ export default function Nav({ openNav, onCloseNav }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  const getLoggedInUserInfo = async () => {
+    const response = await axios.get(`${API_Link}get-logged-in-user-info`);
+    setFirstName(response.data.data.firstname);
+    setLastName(response.data.data.lastname);
+  };
 
   const renderAccount = (
     <Box
@@ -50,10 +65,13 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src={account.photoURL} alt="photoURL" />
+      <Avatar src="assets/images/avatars/user.png" alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">{account.displayName}</Typography>
+        <Typography variant="subtitle2">
+          {firstname}&nbsp;
+          {lastname}
+        </Typography>
 
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {account.role}

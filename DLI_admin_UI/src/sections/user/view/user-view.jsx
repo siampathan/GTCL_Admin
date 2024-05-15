@@ -68,6 +68,8 @@ export default function UserList() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
+              <TableCell>Firstname</TableCell>
+              <TableCell>Lastname</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Role</TableCell>
               {role === 1 && <TableCell>Action</TableCell>}
@@ -76,6 +78,8 @@ export default function UserList() {
           <TableBody>
             {users.map((user) => (
               <TableRow key={user.id}>
+                <TableCell> {user.firstname} </TableCell>
+                <TableCell> {user.lastname} </TableCell>
                 <TableCell> {user.email} </TableCell>
                 <TableCell> {getRoleValue(user.role)} </TableCell>
                 {role === 1 && (
