@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -49,13 +49,13 @@ export default function LoginView() {
       formData.append('email', email);
       formData.append('password', password);
 
-      const response = await axios.post(`${API_Link}login`, formData);
-
-      const token = response.data.token;
+      const {
+        data: { token },
+      } = await axios.post(`${API_Link}login`, formData);
 
       login(token);
 
-      axios.defaults.headers.common.authorization = `${token}`;
+      axios.defaults.headers.common.authorization = `Bearer ${token}`;
 
       navigate('/');
     } catch (err) {
@@ -92,11 +92,11 @@ export default function LoginView() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
+      {/* <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
         <Link variant="subtitle2" underline="hover">
           Forgot password?
         </Link>
-      </Stack>
+      </Stack> */}
 
       {error && (
         <p style={{ color: 'red' }} className="error-message">
@@ -104,7 +104,14 @@ export default function LoginView() {
         </p>
       )}
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" color="inherit">
+      <LoadingButton
+        fullWidth
+        size="large"
+        type="submit"
+        variant="contained"
+        color="inherit"
+        sx={{ my: 3 }}
+      >
         Login
       </LoadingButton>
     </form>

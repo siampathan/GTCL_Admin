@@ -24,10 +24,12 @@ import AppWidgetSummary from '../app-widget-summary';
 export default function AppView() {
   const [userCount, setUserCount] = useState(0);
   const [messageCount, setMessageCount] = useState(0);
+  const [firstname, setFirstName] = useState('');
 
   useEffect(() => {
     getUsers();
     getMessages();
+    getLoggedInUserInfo();
   }, []);
 
   const getUsers = async () => {
@@ -40,10 +42,15 @@ export default function AppView() {
     setMessageCount(response.data.count);
   };
 
+  const getLoggedInUserInfo = async () => {
+    const response = await axios.get(`${API_Link}get-logged-in-user-info`);
+    setFirstName(response.data.data.firstname);
+  };
+
   return (
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Hi, Welcome back 👋
+        Hi, {firstname}! 👋
       </Typography>
 
       <Grid container spacing={3}>
