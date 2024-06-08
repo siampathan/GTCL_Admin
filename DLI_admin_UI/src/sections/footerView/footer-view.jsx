@@ -47,7 +47,7 @@ export default function FooterView() {
 
         <Button
           component={Link}
-          to="/footer-create"
+          to="/content-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -55,7 +55,13 @@ export default function FooterView() {
           Add Content
         </Button>
       </Stack>
-      <Paper>
+      <Paper
+      // style={{
+      //   marginLeft: '-275px',
+      //   minWidth: '900px',
+      //   margin: '0 auto',
+      // }}
+      >
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
@@ -80,8 +86,8 @@ export default function FooterView() {
                 <TableCell> {item.heading} </TableCell>
                 <TableCell> {item.sub_heading} </TableCell>
                 <TableCell> {item.title} </TableCell>
-                <TableCell> {item.sub_title} </TableCell>
-                <TableCell> {item.description} </TableCell>
+                <TableCell style={{ minWidth: '150px' }}> {item.sub_title} </TableCell>
+                <TableCell style={{ minWidth: '350px' }}> {item.description} </TableCell>
                 <TableCell>
                   <Avatar
                     alty={item.image}
@@ -103,21 +109,35 @@ export default function FooterView() {
                 <TableCell> {item.serial} </TableCell>
                 <TableCell> {item.status} </TableCell>
                 <TableCell>
-                  <Button
-                    component={Link}
-                    to={`/footer/${item.id}`}
-                    variant="contained"
-                    color="primary"
-                    startIcon={<Iconify icon="mdi:edit" />}
-                  />
-                  <Button
-                    component={Link}
-                    sx={{ ml: 2 }}
-                    variant="contained"
-                    color="error"
-                    startIcon={<Iconify icon="ic:outline-delete" />}
-                    onClick={(e) => handleDelect(item.id)}
-                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                    }}
+                  >
+                    <Button
+                      component={Link}
+                      to={`/content/${item.id}`}
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="mdi:edit" />}
+                    />
+                    <Button
+                      component={Link}
+                      sx={{ ml: 2 }}
+                      variant="contained"
+                      color="error"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="ic:outline-delete" />}
+                      onClick={(e) => handleDelect(item.id)}
+                    />
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

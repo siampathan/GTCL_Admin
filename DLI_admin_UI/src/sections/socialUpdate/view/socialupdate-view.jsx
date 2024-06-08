@@ -96,6 +96,7 @@ export default function SocialUpdateView() {
           <Typography variant="h3" gutterBottom>
             Update Social Info
           </Typography>
+
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>
             <Select

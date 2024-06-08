@@ -87,7 +87,7 @@ export default function CounterUpdateView() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/counter');
+      navigate('/client');
     } catch (err) {
       console.error('Get an Error ', err);
     }

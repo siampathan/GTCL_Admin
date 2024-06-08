@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import {
+  Box,
   Stack,
   Table,
   Paper,
@@ -83,22 +84,49 @@ export default function UserList() {
                 <TableCell> {user.email} </TableCell>
                 <TableCell> {getRoleValue(user.role)} </TableCell>
                 {role === 1 && (
+                  // <TableCell>
+                  //   <Button
+                  //     component={Link}
+                  //     to={`/user-update/${user.id}`}
+                  //     variant="contained"
+                  //     color="primary"
+                  //     startIcon={<Iconify icon="mdi:edit" />}
+                  //   />
+                  //   <Button
+                  //     component={Link}
+                  //     sx={{ ml: 1 }}
+                  //     variant="contained"
+                  //     color="error"
+                  //     onClick={() => deleteUser(user.id)}
+                  //     startIcon={<Iconify icon="ic:outline-delete" />}
+                  //   />
+                  // </TableCell>
                   <TableCell>
-                    <Button
-                      component={Link}
-                      to={`/user-update/${user.id}`}
-                      variant="contained"
-                      color="primary"
-                      startIcon={<Iconify icon="mdi:edit" />}
-                    />
-                    <Button
-                      component={Link}
-                      sx={{ ml: 1 }}
-                      variant="contained"
-                      color="error"
-                      onClick={() => deleteUser(user.id)}
-                      startIcon={<Iconify icon="ic:outline-delete" />}
-                    />
+                    <Box display="flex" justifyContent="center" alignItems="center">
+                      <Button
+                        component={Link}
+                        to={`/user-update/${user.id}`}
+                        variant="contained"
+                        color="primary"
+                        style={{
+                          paddingLeft: '30px',
+                          width: '30px',
+                        }}
+                        startIcon={<Iconify icon="mdi:edit" />}
+                      />
+                      <Button
+                        component={Link}
+                        sx={{ ml: 1 }}
+                        variant="contained"
+                        color="error"
+                        onClick={() => deleteUser(user.id)}
+                        style={{
+                          paddingLeft: '30px',
+                          width: '30px',
+                        }}
+                        startIcon={<Iconify icon="ic:outline-delete" />}
+                      />
+                    </Box>
                   </TableCell>
                 )}
               </TableRow>

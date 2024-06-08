@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import {
+  Box,
   Stack,
   Table,
   Paper,
@@ -82,21 +83,31 @@ export default function AboutView() {
                   />
                 </TableCell>
                 <TableCell>
-                  <Button
-                    component={Link}
-                    to={`/about/${item.id}`}
-                    variant="contained"
-                    color="primary"
-                    startIcon={<Iconify icon="mdi:edit" />}
-                  />
-                  <Button
-                    component={Link}
-                    sx={{ ml: 1 }}
-                    variant="contained"
-                    color="error"
-                    onClick={() => deleteItems(item.id)}
-                    startIcon={<Iconify icon="ic:outline-delete" />}
-                  />
+                  <Box display="flex" justifyContent="center" alignItems="center">
+                    <Button
+                      component={Link}
+                      to={`/about/${item.id}`}
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="mdi:edit" />}
+                    />
+                    <Button
+                      component={Link}
+                      sx={{ ml: 1 }}
+                      variant="contained"
+                      color="error"
+                      onClick={() => deleteItems(item.id)}
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="ic:outline-delete" />}
+                    />
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}

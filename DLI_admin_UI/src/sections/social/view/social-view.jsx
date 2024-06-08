@@ -67,18 +67,22 @@ export default function SocialInfo() {
             {items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell> {item.menu} </TableCell>
-                <TableCell> {item.title} </TableCell>
-                <TableCell>
+                <TableCell style={{ minWidth: '350px' }}> {item.title} </TableCell>
+                <TableCell style={{ minWidth: '350px' }}>
                   <Link to={item.link} target="_blank">
                     {item.title}
                   </Link>
                 </TableCell>
-                <TableCell>
+                <TableCell style={{ minWidth: '20px' }}>
                   <Button
                     component={Link}
                     to={`/social/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
@@ -87,6 +91,10 @@ export default function SocialInfo() {
                     variant="contained"
                     color="error"
                     onClick={() => deleteItems(item.id)}
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>

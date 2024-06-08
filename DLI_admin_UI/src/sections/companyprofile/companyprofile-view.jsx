@@ -72,12 +72,16 @@ export default function CompanyprofileView() {
                     }}
                   />
                 </TableCell>
-                <TableCell>
+                <TableCell style={{ textAlign: 'center' }}>
                   <Button
                     component={Link}
                     to={`/companyprofile-update/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                 </TableCell>

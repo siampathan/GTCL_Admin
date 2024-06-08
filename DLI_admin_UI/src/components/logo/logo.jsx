@@ -38,9 +38,10 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
     <>
       {items.map((item) => (
         <Box
+          key={item.id}
           component="img"
           src={item.url}
-          sx={{ width: '100px', height: '50px', cursor: 'pointer', ...sx }}
+          sx={{ width: '150px', cursor: 'pointer', ...sx }}
         />
       ))}
     </>

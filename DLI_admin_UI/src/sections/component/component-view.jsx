@@ -54,7 +54,13 @@ export default function ComponentList() {
           Add Component
         </Button>
       </Stack>
-      <Paper>
+      <Paper
+      // style={{
+      //   marginLeft: '-125px',
+      //   minWidth: '900px',
+      //   margin: '0 auto',
+      // }}
+      >
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
@@ -95,21 +101,38 @@ export default function ComponentList() {
                 <TableCell> {component.serial} </TableCell>
                 <TableCell> {component.status} </TableCell>
                 <TableCell>
-                  <Button
-                    component={Link}
-                    to={`/user-update/${component.id}`}
-                    variant="contained"
-                    color="primary"
-                    startIcon={<Iconify icon="mdi:edit" />}
-                  />
-                  <Button
-                    component={Link}
-                    sx={{ ml: 1 }}
-                    variant="contained"
-                    color="error"
-                    onClick={() => deleteComponent(component.id)}
-                    startIcon={<Iconify icon="ic:outline-delete" />}
-                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '10px',
+                    }}
+                  >
+                    <Button
+                      component={Link}
+                      to={`/component-update/${component.id}`}
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="mdi:edit" />}
+                    />
+                    <Button
+                      component={Link}
+                      sx={{ ml: 1 }}
+                      variant="contained"
+                      color="error"
+                      onClick={() => deleteComponent(component.id)}
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="ic:outline-delete" />}
+                    />
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

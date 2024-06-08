@@ -66,7 +66,7 @@ export default function FooterUpdateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Footer Update Info
+            Content Info Update
           </Typography>
           <TextField
             label="Header"

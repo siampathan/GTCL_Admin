@@ -87,6 +87,10 @@ export default function GalleryInfoView() {
                     to={`/gallery-update/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
@@ -95,6 +99,10 @@ export default function GalleryInfoView() {
                     variant="contained"
                     color="error"
                     onClick={() => deleteItems(item.id)}
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>

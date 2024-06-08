@@ -24,12 +24,16 @@ import AppWidgetSummary from '../app-widget-summary';
 export default function AppView() {
   const [userCount, setUserCount] = useState(0);
   const [messageCount, setMessageCount] = useState(0);
+  const [clientCount, setClientCount] = useState(0);
+  const [jobCount, setJobCount] = useState(0);
   const [firstname, setFirstName] = useState('');
 
   useEffect(() => {
     getUsers();
     getMessages();
     getLoggedInUserInfo();
+    getClients();
+    getJobs();
   }, []);
 
   const getUsers = async () => {
@@ -40,6 +44,16 @@ export default function AppView() {
   const getMessages = async () => {
     const response = await axios.get(`${API_Link}message`);
     setMessageCount(response.data.count);
+  };
+
+  const getClients = async () => {
+    const response = await axios.get(`${API_Link}clients`);
+    setClientCount(response.data.count);
+  };
+
+  const getJobs = async () => {
+    const response = await axios.get(`${API_Link}jobs`);
+    setJobCount(response.data.count);
   };
 
   const getLoggedInUserInfo = async () => {
@@ -56,8 +70,8 @@ export default function AppView() {
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Weekly Sales"
-            total={714000}
+            title="Clients"
+            total={clientCount}
             color="success"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
           />
@@ -74,8 +88,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Item Orders"
-            total={1723315}
+            title="Jobs"
+            total={jobCount}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />

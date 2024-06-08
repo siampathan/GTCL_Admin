@@ -27,7 +27,7 @@ export default function CompanyInfoView() {
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}jobs`);
-    setItems(response.data);
+    setItems(response.data.rows);
   };
 
   const deleteItems = async (itemId) => {
@@ -46,7 +46,7 @@ export default function CompanyInfoView() {
 
         <Button
           component={Link}
-          to="/company-create"
+          to="/job-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -90,21 +90,38 @@ export default function CompanyInfoView() {
                   />
                 </TableCell>
                 <TableCell>
-                  <Button
-                    component={Link}
-                    to={`/company/${item.id}`}
-                    variant="contained"
-                    color="primary"
-                    startIcon={<Iconify icon="mdi:edit" />}
-                  />
-                  <Button
-                    component={Link}
-                    sx={{ ml: 1 }}
-                    variant="contained"
-                    color="error"
-                    onClick={() => deleteItems(item.id)}
-                    startIcon={<Iconify icon="ic:outline-delete" />}
-                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      gap: '10px',
+                    }}
+                  >
+                    <Button
+                      component={Link}
+                      to={`/job/${item.id}`}
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="mdi:edit" />}
+                    />
+                    <Button
+                      component={Link}
+                      sx={{ ml: 1 }}
+                      variant="contained"
+                      color="error"
+                      onClick={() => deleteItems(item.id)}
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="ic:outline-delete" />}
+                    />
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

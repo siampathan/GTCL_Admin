@@ -111,7 +111,7 @@ export default function FooterCreateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Company Info Create
+            Create Content
           </Typography>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>

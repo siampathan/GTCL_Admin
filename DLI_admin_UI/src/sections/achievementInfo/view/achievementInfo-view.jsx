@@ -69,8 +69,8 @@ export default function AchievementInfoView() {
             {items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell> {item.menu} </TableCell>
-                <TableCell sx={{ maxWidth: 200, height: 150 }}>{item.title}</TableCell>
-                <TableCell sx={{ maxWidth: 200, height: 150 }}>{item.description}</TableCell>
+                <TableCell sx={{ minWidth: 350, height: 150 }}>{item.title}</TableCell>
+                <TableCell sx={{ minWidth: 450, height: 150 }}>{item.description}</TableCell>
                 <TableCell>
                   <Avatar
                     alty={item.url}
@@ -89,6 +89,10 @@ export default function AchievementInfoView() {
                     to={`/achieve-update/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
@@ -97,6 +101,10 @@ export default function AchievementInfoView() {
                     variant="contained"
                     color="error"
                     onClick={() => deleteItems(item.id)}
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>

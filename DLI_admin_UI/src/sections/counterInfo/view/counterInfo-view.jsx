@@ -27,7 +27,7 @@ export default function CounterInfoView() {
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}clients`);
-    setItems(response.data);
+    setItems(response.data.rows);
   };
 
   const deleteItems = async (id) => {
@@ -85,6 +85,10 @@ export default function CounterInfoView() {
                     to={`/counter-update/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
@@ -93,6 +97,10 @@ export default function CounterInfoView() {
                     variant="contained"
                     color="error"
                     onClick={() => deleteItems(item.id)}
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>

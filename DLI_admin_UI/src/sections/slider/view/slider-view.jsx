@@ -51,7 +51,7 @@ export default function SliderInfoView() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Info
+          Add Slider
         </Button>
       </Stack>
       <Paper>
@@ -69,8 +69,8 @@ export default function SliderInfoView() {
             {items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell> {item.menu} </TableCell>
-                <TableCell>{item.title}</TableCell>
-                <TableCell>{item.sub_title}</TableCell>
+                <TableCell sx={{ minWidth: 360 }}>{item.title}</TableCell>
+                <TableCell sx={{ minWidth: 360 }}>{item.sub_title}</TableCell>
                 <TableCell>
                   <Avatar
                     alty={item.url}
@@ -89,6 +89,10 @@ export default function SliderInfoView() {
                     to={`/slider-update/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
@@ -97,6 +101,10 @@ export default function SliderInfoView() {
                     variant="contained"
                     color="error"
                     onClick={() => deleteItems(item.id)}
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                   />
                 </TableCell>

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
 import {
+  Box,
   Stack,
   Table,
   Paper,
@@ -49,7 +50,7 @@ export default function PostPage() {
 
         <Button
           component={Link}
-          to="/create"
+          to="/menu-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -74,22 +75,32 @@ export default function PostPage() {
                 <TableCell> {slug} </TableCell>
                 <TableCell> {active} </TableCell>
                 <TableCell>
-                  <Button
-                    component={Link}
-                    to={`/update/${id}`}
-                    variant="contained"
-                    color="primary"
-                    startIcon={<Iconify icon="mdi:edit" />}
-                  />
-                  <Button
-                    component={Link}
-                    sx={{ ml: 2 }}
-                    variant="contained"
-                    color="error"
-                    startIcon={<Iconify icon="ic:outline-delete" />}
-                    onClick={() => handleDelect(id)}
-                  />
-                  <ToastContainer />
+                  <Box display="flex" justifyContent="center" alignItems="center">
+                    <Button
+                      component={Link}
+                      to={`/menu-update/${id}`}
+                      variant="contained"
+                      color="primary"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="mdi:edit" />}
+                    />
+                    <Button
+                      component={Link}
+                      sx={{ ml: 2 }}
+                      variant="contained"
+                      color="error"
+                      style={{
+                        paddingLeft: '30px',
+                        width: '30px',
+                      }}
+                      startIcon={<Iconify icon="ic:outline-delete" />}
+                      onClick={() => handleDelect(id)}
+                    />
+                    <ToastContainer />
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}

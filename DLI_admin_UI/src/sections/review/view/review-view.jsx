@@ -44,9 +44,9 @@ export default function CompanyInfoView() {
           <TableBody>
             {items.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.name} </TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell> {item.subject} </TableCell>
+                <TableCell sx={{ minWidth: 200 }}> {item.name} </TableCell>
+                <TableCell sx={{ minWidth: 300 }}>{item.email}</TableCell>
+                <TableCell sx={{ minWidth: 350 }}> {item.subject} </TableCell>
                 <TableCell> {item.comment} </TableCell>
               </TableRow>
             ))}

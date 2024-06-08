@@ -13,7 +13,7 @@ import { bgBlur } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
 
-import Searchbar from './common/searchbar';
+// import Searchbar from './common/searchbar';
 import { NAV, HEADER } from './config-layout';
 // import ForgetPopover from './common/forget-popover';
 import AccountPopover from './common/account-popover';
@@ -35,7 +35,7 @@ export default function Header({ onOpenNav }) {
         </IconButton>
       )}
 
-      <Searchbar />
+      {/* <Searchbar /> */}
 
       <Box sx={{ flexGrow: 1 }} />
 

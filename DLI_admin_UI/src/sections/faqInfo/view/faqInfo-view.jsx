@@ -46,12 +46,12 @@ export default function FaqInfo() {
 
         <Button
           component={Link}
-          to="/faq-create"
+          to="/license-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Info
+          Add License Info
         </Button>
       </Stack>
       <Paper>
@@ -67,8 +67,8 @@ export default function FaqInfo() {
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.menu} </TableCell>
-                <TableCell> {item.title} </TableCell>
+                <TableCell sx={{ minWidth: 350 }}>{item.menu}</TableCell>
+                <TableCell sx={{ minWidth: 350 }}>{item.title}</TableCell>
                 <TableCell>
                   <Avatar
                     alty={item.image}
@@ -84,9 +84,13 @@ export default function FaqInfo() {
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/faq-update/${item.id}`}
+                    to={`/license-update/${item.id}`}
                     variant="contained"
                     color="primary"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="mdi:edit" />}
                   />
                   <Button
@@ -94,6 +98,10 @@ export default function FaqInfo() {
                     sx={{ ml: 2 }}
                     variant="contained"
                     color="error"
+                    style={{
+                      paddingLeft: '30px',
+                      width: '30px',
+                    }}
                     startIcon={<Iconify icon="ic:outline-delete" />}
                     onClick={() => handleDelect(item.id)}
                   />

@@ -61,7 +61,7 @@ export default function UpdateView() {
       try {
         const response = await axios.get(`${API_Link}menu/${id}`);
         setValues(response.data);
-        toast.success('Item Update Redirect !');
+        toast.success('Got Item Info!');
       } catch (err) {
         console.error(err);
         toast.error('Got an Error !', err);
@@ -87,7 +87,7 @@ export default function UpdateView() {
     try {
       const updateDate = values;
       await axios.patch(`${API_Link}menu/${id}`, updateDate);
-      navigate('/post');
+      navigate('/menu');
     } catch (err) {
       console.error(err);
     }
@@ -101,15 +101,7 @@ export default function UpdateView() {
           <Typography variant="h3" gutterBottom>
             Update Menu
           </Typography>
-          {/* <TextField
-            label="Menu"
-            type="text"
-            value={values.menu}
-            variant="outlined"
-            onChange={(e) => setValues({ ...values, menu: e.target.value })}
-            fullWidth
-            margin="normal"
-          /> */}
+
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>
             <Select
@@ -126,6 +118,7 @@ export default function UpdateView() {
               ))}
             </Select>
           </FormControl>
+
           <TextField
             label="Slug"
             type="text"
@@ -137,16 +130,16 @@ export default function UpdateView() {
           />
 
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">ACtive</InputLabel>
+            <InputLabel id="demo-simple-select-label">Active</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={values.active}
-              label="Age"
+              label="Status"
               onChange={(e) => setValues({ ...values, active: e.target.value })}
             >
               <MenuItem value={1}>Active</MenuItem>
-              <MenuItem value={0}>Deactivate</MenuItem>
+              <MenuItem value={0}>Inactive</MenuItem>
             </Select>
           </FormControl>
           <Button type="submit" variant="contained" color="success">

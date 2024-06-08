@@ -64,7 +64,7 @@ export default function CreateView() {
       await axios.post(`${API_Link}menu`, postData);
       toast.success('Item Create Successfully !');
 
-      navigate('/post');
+      navigate('/menu');
     } catch (error) {
       console.error('Error creating post:', error);
       toast.error('Get an Error Faild !', error);
@@ -76,7 +76,7 @@ export default function CreateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            All Menu Items
+            Create Menu
           </Typography>
           <TextField
             label="Menu"

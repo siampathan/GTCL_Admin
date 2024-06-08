@@ -85,7 +85,7 @@ export default function CompanyInfoCreate() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/company');
+      navigate('/job');
       console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
@@ -97,7 +97,7 @@ export default function CompanyInfoCreate() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Jobs Info Create
+            Create Jobs Info
           </Typography>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>

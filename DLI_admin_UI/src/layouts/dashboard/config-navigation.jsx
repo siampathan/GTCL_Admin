@@ -18,18 +18,13 @@ const navConfig = [
     icon: icon('ic_company'),
   },
   {
-    title: 'users',
-    path: '/user',
-    icon: icon('ic_user'),
-  },
-  {
     title: 'Menu Items',
-    path: '/post',
+    path: '/menu',
     icon: icon('ic_menu'),
   },
   {
     title: 'Contents',
-    path: '/footer',
+    path: '/content',
     icon: icon('ic_content'),
   },
   {
@@ -49,7 +44,7 @@ const navConfig = [
   },
   {
     title: 'Jobs',
-    path: '/company',
+    path: '/job',
     icon: icon('ic_jobs'),
   },
   {
@@ -74,13 +69,18 @@ const navConfig = [
   },
   {
     title: 'Clients',
-    path: '/counter',
+    path: '/client',
     icon: icon('ic_country'),
   },
   {
     title: 'License Info',
-    path: '/faq',
+    path: '/license',
     icon: icon('ic_license'),
+  },
+  {
+    title: 'users',
+    path: '/user',
+    icon: icon('ic_user'),
   },
   // {
   //   title: 'Register Info',

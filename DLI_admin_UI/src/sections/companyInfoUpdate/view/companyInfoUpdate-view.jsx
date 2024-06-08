@@ -58,7 +58,7 @@ export default function CompanyInfoUpdate() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_Link}jobs/${id}`);
+        const response = await axios.get(`${API_Link}job/${id}`);
         setValues(response.data);
       } catch (err) {
         console.error('Got an Error ', err);
@@ -82,12 +82,12 @@ export default function CompanyInfoUpdate() {
 
     try {
       const updateValues = values;
-      await axios.patch(`${API_Link}jobs/${id}`, updateValues, {
+      await axios.patch(`${API_Link}job/${id}`, updateValues, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/company');
+      navigate('/job');
     } catch (err) {
       console.error('Get an Error ', err);
     }
