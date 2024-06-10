@@ -21,14 +21,26 @@ import { API_Link } from 'src/components/api/api';
 
 export default function GalleryInfoView() {
   const [items, setItems] = useState([]);
+  // const [menus, setMenus] = useState([]);
+
   useEffect(() => {
     getItems();
+    // getMenus();
   }, []);
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}gallery`);
     setItems(response.data);
   };
+
+  // const getMenus = async () => {
+  //   const response = await axios.get(`${API_Link}menu`);
+  //   const menuData = response.data.reduce((acc, menu) => {
+  //     acc[menu.id] = menu.menu;
+  //     return acc;
+  //   }, {});
+  //   setMenus(menuData);
+  // };
 
   const deleteItems = async (itemId) => {
     try {
@@ -60,7 +72,7 @@ export default function GalleryInfoView() {
             <TableRow>
               <TableCell>Title</TableCell>
               <TableCell>Image</TableCell>
-              <TableCell>Menu</TableCell>
+              {/* <TableCell>Menu</TableCell> */}
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
@@ -80,7 +92,7 @@ export default function GalleryInfoView() {
                     }}
                   />
                 </TableCell>
-                <TableCell> {item.menu} </TableCell>
+                {/* <TableCell> {menus[item.menu] || item.menu} </TableCell> */}
                 <TableCell>
                   <Button
                     component={Link}

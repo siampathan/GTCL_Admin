@@ -64,7 +64,6 @@ export default function ReviewUpdateView() {
         },
       });
       navigate('/review');
-      console.log('Submission successful!');
     } catch (err) {
       console.error('Error submitting form:', err.message);
     }

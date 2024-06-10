@@ -127,7 +127,6 @@ export default function ComponentCreate() {
         },
       });
       navigate('/component');
-      console.log('Submission Successfull!', formData);
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }

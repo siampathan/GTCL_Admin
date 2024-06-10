@@ -56,7 +56,6 @@ export default function StoriesCreate() {
         },
       });
       navigate('/stories');
-      console.log('Submission successful!');
     } catch (err) {
       console.error('Error submitting form:', err.message);
     }

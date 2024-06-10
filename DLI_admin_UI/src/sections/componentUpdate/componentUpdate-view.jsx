@@ -1,10 +1,10 @@
 import axios from 'axios';
-import 'react-toastify/dist/ReactToastify.css';
 import ReactQuill from 'react-quill-style';
 import { useState, useEffect } from 'react';
+import 'react-quill-style/dist/quill.snow.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { useParams, useNavigate } from 'react-router-dom';
-import 'react-quill-style/dist/quill.snow.css';
 
 import { styled } from '@mui/system';
 import {
@@ -77,7 +77,6 @@ export default function ComponentUpdate() {
         setValues(response.data);
         setSelectedMenu(response.data.menu);
         fetchContentItems(response.data.menu);
-        console.log(response.data);
         toast.success('Got Component Info!');
       } catch (err) {
         console.error('Got an Error ', err);

@@ -87,7 +87,6 @@ export default function AchieveCreateView() {
         },
       });
       navigate('/achieve');
-      console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
     }

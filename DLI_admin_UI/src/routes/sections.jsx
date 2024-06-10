@@ -24,8 +24,8 @@ export const SocialUpdate = lazy(() => import('src/pages/social-update'));
 export const ViewStoriesInfo = lazy(() => import('src/pages/stories-info'));
 export const CreateStoriesInfo = lazy(() => import('src/pages/stories-post'));
 export const AboutPage = lazy(() => import('src/pages/content'));
-export const AboutUpdate = lazy(() => import('src/pages/content-update'));
-export const ContentPost = lazy(() => import('src/pages/content-post'));
+export const AboutUpdate = lazy(() => import('src/pages/footer-update'));
+export const AboutPost = lazy(() => import('src/pages/content-post'));
 export const GalleryInfo = lazy(() => import('src/pages/galleryInfo'));
 export const GalleryInfoCreate = lazy(() => import('src/pages/galleryInfoCreate'));
 export const GalleryInfoUpdate = lazy(() => import('src/pages/galleryInfoUpdate'));
@@ -50,15 +50,16 @@ export const CoursesPost = lazy(() => import('src/pages/coursesPost'));
 export const TeachersInfo = lazy(() => import('src/pages/teachers'));
 export const TeachersCreate = lazy(() => import('src/pages/teachers-create'));
 export const TeachersUpdate = lazy(() => import('src/pages/teachersUpdate'));
-export const FooterView = lazy(() => import('src/pages/footer-view'));
-export const FooterCreate = lazy(() => import('src/pages/footer-create'));
-export const FooterUpdate = lazy(() => import('src/pages/footer-update'));
+export const ContentView = lazy(() => import('src/pages/footer-view'));
+export const ContentCreate = lazy(() => import('src/pages/footer-create'));
+export const ContentUpdateView = lazy(() => import('src/pages/content-update'));
 export const FaqView = lazy(() => import('src/pages/faqInfo'));
 export const FaqCreate = lazy(() => import('src/pages/faqInfoCreate'));
 export const FaqUpdate = lazy(() => import('src/pages/faqInfoUpdate'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ForgetPage = lazy(() => import('src/pages/forget'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
+export const ProfilePage = lazy(() => import('src/pages/profile'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 
 // ----------------------------------------------------------------------
@@ -95,7 +96,7 @@ export default function Router() {
         { path: 'stories', element: <ViewStoriesInfo /> },
         { path: 'stories-create', element: <CreateStoriesInfo /> },
         { path: 'about', element: <AboutPage /> },
-        { path: 'about-create', element: <ContentPost /> },
+        { path: 'about-create', element: <AboutPost /> },
         { path: 'about/:id', element: <AboutUpdate /> },
         { path: 'job', element: <CompoanyInfo /> },
         { path: 'job-create', element: <CompanyInfoPost /> },
@@ -118,14 +119,15 @@ export default function Router() {
         { path: 'teachers', element: <TeachersInfo /> },
         { path: 'teachers-create', element: <TeachersCreate /> },
         { path: 'teachers-update/:id', element: <TeachersUpdate /> },
-        { path: 'content', element: <FooterView /> },
-        { path: 'content-create', element: <FooterCreate /> },
-        { path: 'content/:id', element: <FooterUpdate /> },
+        { path: 'content', element: <ContentView /> },
+        { path: 'content-create', element: <ContentCreate /> },
+        { path: 'content/:id', element: <ContentUpdateView /> },
         { path: 'license', element: <FaqView /> },
         { path: 'license-create', element: <FaqCreate /> },
         { path: 'license-update/:id', element: <FaqUpdate /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
+        { path: 'profile', element: <ProfilePage /> },
       ],
     },
     {

@@ -21,14 +21,26 @@ import { API_Link } from 'src/components/api/api';
 
 export default function AchievementInfoView() {
   const [items, setItems] = useState([]);
+  // const [menus, setMenus] = useState([]);
+
   useEffect(() => {
     getItems();
+    // getMenus();
   }, []);
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}achieve`);
     setItems(response.data);
   };
+
+  // const getMenus = async () => {
+  //   const response = await axios.get(`${API_Link}menu`);
+  //   const menuData = response.data.reduce((acc, menu) => {
+  //     acc[menu.id] = menu.menu;
+  //     return acc;
+  //   }, {});
+  //   setMenus(menuData);
+  // };
 
   const deleteItems = async (itemId) => {
     try {
@@ -58,7 +70,7 @@ export default function AchievementInfoView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Menu</TableCell>
+              {/* <TableCell>Menu</TableCell> */}
               <TableCell>Title</TableCell>
               <TableCell>Description</TableCell>
               <TableCell>Image</TableCell>
@@ -68,7 +80,7 @@ export default function AchievementInfoView() {
           <TableBody>
             {items.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.menu} </TableCell>
+                {/* <TableCell> {menus[item.menu] || item.menu} </TableCell> */}
                 <TableCell sx={{ minWidth: 350, height: 150 }}>{item.title}</TableCell>
                 <TableCell sx={{ minWidth: 450, height: 150 }}>{item.description}</TableCell>
                 <TableCell>

@@ -55,7 +55,6 @@ export default function CoursesPostView() {
         },
       });
       navigate('/courses');
-      console.log('Submission Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }

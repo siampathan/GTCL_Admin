@@ -73,8 +73,6 @@ export default function ContentPostView() {
 
   const handleChange = (e) => {
     setSelectedMenu(e.target.value);
-
-    console.log(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -94,7 +92,6 @@ export default function ContentPostView() {
         },
       });
       navigate('/about');
-      console.log('Submission Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }

@@ -46,7 +46,7 @@ export default function PostPage() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Create Menu</Typography>
+        <Typography variant="h4">All Menus</Typography>
 
         <Button
           component={Link}
@@ -55,7 +55,7 @@ export default function PostPage() {
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          Add Item
+          Add Menu
         </Button>
       </Stack>
       <Paper>
@@ -63,17 +63,19 @@ export default function PostPage() {
           <TableHead>
             <TableRow>
               <TableCell>Menu</TableCell>
+              <TableCell>Parent</TableCell>
               <TableCell>Slug</TableCell>
               <TableCell>Active</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items?.map(({ id, menu, slug, active }) => (
+            {items?.map(({ id, menu, parent, slug, active }) => (
               <TableRow key={id}>
                 <TableCell> {menu} </TableCell>
+                <TableCell> {parent === 1 ? 'Yes' : 'No'} </TableCell>
                 <TableCell> {slug} </TableCell>
-                <TableCell> {active} </TableCell>
+                <TableCell> {active === 1 ? 'Active' : 'Inactive'} </TableCell>
                 <TableCell>
                   <Box display="flex" justifyContent="center" alignItems="center">
                     <Button

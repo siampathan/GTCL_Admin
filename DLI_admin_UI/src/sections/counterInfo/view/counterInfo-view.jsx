@@ -21,8 +21,11 @@ import { API_Link } from 'src/components/api/api';
 
 export default function CounterInfoView() {
   const [items, setItems] = useState([]);
+  // const [menus, setMenus] = useState([]);
+
   useEffect(() => {
     getItems();
+    // getMenus();
   }, []);
 
   const getItems = async () => {
@@ -30,11 +33,19 @@ export default function CounterInfoView() {
     setItems(response.data.rows);
   };
 
+  // const getMenus = async () => {
+  //   const response = await axios.get(`${API_Link}menu`);
+  //   const menuData = response.data.reduce((acc, menu) => {
+  //     acc[menu.id] = menu.menu;
+  //     return acc;
+  //   }, {});
+  //   setMenus(menuData);
+  // };
+
   const deleteItems = async (id) => {
     try {
       await axios.delete(`${API_Link}clients/${id}`);
       getItems();
-      console.log('Delete success');
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +58,7 @@ export default function CounterInfoView() {
 
         <Button
           component={Link}
-          to="/counter-create"
+          to="/client-create"
           variant="contained"
           color="inherit"
           startIcon={<Iconify icon="eva:plus-fill" />}
@@ -59,7 +70,7 @@ export default function CounterInfoView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Menu</TableCell>
+              {/* <TableCell>Menu</TableCell> */}
               <TableCell> Title </TableCell>
               <TableCell> Description </TableCell>
               <TableCell>Image</TableCell>
@@ -69,7 +80,7 @@ export default function CounterInfoView() {
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.menu} </TableCell>
+                {/* <TableCell> {menus[item.menu] || item.menu} </TableCell> */}
                 <TableCell>{item.title}</TableCell>
                 <TableCell> {item.description} </TableCell>
                 <TableCell>
@@ -82,7 +93,7 @@ export default function CounterInfoView() {
                 <TableCell>
                   <Button
                     component={Link}
-                    to={`/counter-update/${item.id}`}
+                    to={`/client-update/${item.id}`}
                     variant="contained"
                     color="primary"
                     style={{

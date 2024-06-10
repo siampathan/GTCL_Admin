@@ -57,7 +57,8 @@ export default function FooterCreateView() {
   const [link, setLink] = useState('');
   const [serial, setSerial] = useState('');
   const [status, setStatus] = useState('');
-  // const [list, setList] = useState('');
+  const [file, setFile] = useState(null);
+
   const navigate = useNavigate();
 
   const handleMenu = (e) => {
@@ -85,22 +86,26 @@ export default function FooterCreateView() {
     e.preventDefault();
 
     try {
-      const formateData = new FormData();
+      const formData = new FormData();
 
-      formateData.append('menu', menu);
-      formateData.append('heading', heading);
-      formateData.append('sub_heading', sub_heading);
-      formateData.append('title', title);
-      formateData.append('sub_title', sub_title);
-      formateData.append('description', description);
-      formateData.append('button', button);
-      formateData.append('link', link);
-      formateData.append('serial', serial);
-      formateData.append('status', status);
+      formData.append('menu', menu);
+      formData.append('heading', heading);
+      formData.append('sub_heading', sub_heading);
+      formData.append('title', title);
+      formData.append('sub_title', sub_title);
+      formData.append('description', description);
+      formData.append('button', button);
+      formData.append('link', link);
+      formData.append('serial', serial);
+      formData.append('status', status);
+      formData.append('file', file);
 
-      await axios.post(`${API_Link}content`, formateData);
-      navigate('/footer');
-      console.log('Submit Successful !');
+      await axios.post(`${API_Link}content`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      navigate('/content');
     } catch (err) {
       console.error('Got an Error !', err);
     }
@@ -223,15 +228,26 @@ export default function FooterCreateView() {
             fullWidth
             margin="normal"
           />
+
           <TextField
-            label="Status"
-            type="text"
-            placeholder="Enter Status"
+            type="file"
             variant="outlined"
-            onChange={(e) => setStatus(e.target.value)}
+            onChange={(e) => setFile(e.target.files[0])}
             fullWidth
             margin="normal"
           />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Active</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Status"
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <MenuItem value={1}>Active</MenuItem>
+              <MenuItem value={0}>Inactive</MenuItem>
+            </Select>
+          </FormControl>
 
           <Button type="submit" variant="contained" color="success">
             Submit

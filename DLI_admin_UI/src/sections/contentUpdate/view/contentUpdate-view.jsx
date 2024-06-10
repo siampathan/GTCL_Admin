@@ -49,9 +49,15 @@ export default function ContentUpdateView() {
   const { id } = useParams();
   const [values, setValues] = useState({
     menu: '',
+    heading: '',
+    sub_heading: '',
     title: '',
-    designation: '',
+    sub_title: '',
     description: '',
+    button: '',
+    link: '',
+    serial: '',
+    status: '',
     file: null,
   });
 
@@ -62,10 +68,10 @@ export default function ContentUpdateView() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_Link}about/${id}`);
+        const response = await axios.get(`${API_Link}content/${id}`);
         setValues(response.data);
       } catch (err) {
-        console.error('Got an Error ', err);
+        console.error('Got an Error', err);
       }
     };
     fetchData();
@@ -86,12 +92,12 @@ export default function ContentUpdateView() {
 
     try {
       const updateValues = values;
-      await axios.patch(`${API_Link}about/${id}`, updateValues, {
+      await axios.patch(`${API_Link}content/${id}`, updateValues, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/about');
+      navigate('/content');
     } catch (err) {
       console.error('Get an Error ', err);
     }
@@ -101,7 +107,7 @@ export default function ContentUpdateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Update About Info
+            Update Content Info
           </Typography>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>
@@ -120,6 +126,24 @@ export default function ContentUpdateView() {
             </Select>
           </FormControl>
           <TextField
+            label="Heading"
+            type="text"
+            variant="outlined"
+            value={values.heading}
+            onChange={(e) => setValues({ ...values, heading: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Sub Heading"
+            type="text"
+            variant="outlined"
+            value={values.sub_heading}
+            onChange={(e) => setValues({ ...values, sub_heading: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
             label="Title"
             type="text"
             variant="outlined"
@@ -129,11 +153,11 @@ export default function ContentUpdateView() {
             margin="normal"
           />
           <TextField
-            label="Designation"
+            label="Sub Title"
             type="text"
             variant="outlined"
-            value={values.designation}
-            onChange={(e) => setValues({ ...values, designation: e.target.value })}
+            value={values.sub_title}
+            onChange={(e) => setValues({ ...values, sub_title: e.target.value })}
             fullWidth
             margin="normal"
           />
@@ -153,6 +177,46 @@ export default function ContentUpdateView() {
             fullWidth
             margin="normal"
           />
+          <TextField
+            label="Button"
+            type="text"
+            variant="outlined"
+            value={values.button}
+            onChange={(e) => setValues({ ...values, button: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Link"
+            type="text"
+            variant="outlined"
+            value={values.link}
+            onChange={(e) => setValues({ ...values, link: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Serial"
+            type="text"
+            variant="outlined"
+            value={values.serial}
+            onChange={(e) => setValues({ ...values, serial: e.target.value })}
+            fullWidth
+            margin="normal"
+          />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Active</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={values.status}
+              label="Status"
+              onChange={(e) => setValues({ ...values, status: e.target.value })}
+            >
+              <MenuItem value={1}>Active</MenuItem>
+              <MenuItem value={0}>Inactive</MenuItem>
+            </Select>
+          </FormControl>
           <Button type="submit" variant="contained" color="success">
             Update
           </Button>

@@ -58,7 +58,7 @@ export default function CompanyInfoUpdate() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_Link}job/${id}`);
+        const response = await axios.get(`${API_Link}jobs/${id}`);
         setValues(response.data);
       } catch (err) {
         console.error('Got an Error ', err);

@@ -86,7 +86,6 @@ export default function CounterPostView() {
         },
       });
       navigate('/client');
-      console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
     }

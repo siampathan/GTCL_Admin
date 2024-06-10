@@ -83,7 +83,6 @@ export default function FaqCreateView() {
         },
       });
       navigate('/faq');
-      console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
     }
@@ -94,7 +93,7 @@ export default function FaqCreateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            License Info Data
+            Add License Info
           </Typography>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>

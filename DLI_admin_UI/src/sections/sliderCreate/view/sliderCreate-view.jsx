@@ -85,7 +85,6 @@ export default function SliderCreateView() {
         },
       });
       navigate('/slider');
-      console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
     }

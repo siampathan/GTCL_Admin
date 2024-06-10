@@ -49,6 +49,7 @@ export default function UpdateView() {
   const { id } = useParams();
   const [values, setValues] = useState({
     menu: '',
+    parent: '',
     slug: '',
     active: '',
   });
@@ -116,6 +117,20 @@ export default function UpdateView() {
                   {item.menu}
                 </MenuItem>
               ))}
+            </Select>
+          </FormControl>
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Parent</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={values.parent}
+              label="Status"
+              onChange={(e) => setValues({ ...values, parent: e.target.value })}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
             </Select>
           </FormControl>
 

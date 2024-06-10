@@ -6,7 +6,6 @@ import {
   Stack,
   Table,
   Paper,
-  Avatar,
   Button,
   TableRow,
   TableHead,
@@ -60,17 +59,8 @@ export default function CompanyprofileView() {
                 <TableCell sx={{ maxWidth: 200, height: 150 }}>{item.address}</TableCell>
                 <TableCell sx={{ maxWidth: 200, height: 150 }}>{item.description}</TableCell>
                 <TableCell sx={{ maxWidth: 200, height: 150 }}>{item.websitelink}</TableCell>
-                <TableCell>
-                  <Avatar
-                    alty={item.url}
-                    src={item.url}
-                    style={{
-                      width: '100px',
-                      height: '90px',
-                      borderRadius: '10px',
-                      objectFit: 'cover',
-                    }}
-                  />
+                <TableCell sx={{ width: '250px', height: '90px', paddingLeft: '50px' }}>
+                  <img alt={item.url} src={item.url} />
                 </TableCell>
                 <TableCell style={{ textAlign: 'center' }}>
                   <Button

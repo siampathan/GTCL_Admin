@@ -21,14 +21,26 @@ import { API_Link } from 'src/components/api/api';
 
 export default function FaqInfo() {
   const [items, setItems] = useState([]);
+  // const [menus, setMenus] = useState([]);
+
   useEffect(() => {
     getItems();
+    // getMenus();
   }, []);
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}license`);
     setItems(response.data);
   };
+
+  // const getMenus = async () => {
+  //   const response = await axios.get(`${API_Link}menu`);
+  //   const menuData = response.data.reduce((acc, menu) => {
+  //     acc[menu.id] = menu.menu;
+  //     return acc;
+  //   }, {});
+  //   setMenus(menuData);
+  // };
 
   const handleDelect = async (id) => {
     try {
@@ -58,7 +70,7 @@ export default function FaqInfo() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Menu</TableCell>
+              {/* <TableCell>Menu</TableCell> */}
               <TableCell>Title</TableCell>
               <TableCell>Image</TableCell>
               <TableCell>Action</TableCell>
@@ -67,7 +79,7 @@ export default function FaqInfo() {
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell sx={{ minWidth: 350 }}>{item.menu}</TableCell>
+                {/* <TableCell> {menus[item.menu] || item.menu} </TableCell> */}
                 <TableCell sx={{ minWidth: 350 }}>{item.title}</TableCell>
                 <TableCell>
                   <Avatar

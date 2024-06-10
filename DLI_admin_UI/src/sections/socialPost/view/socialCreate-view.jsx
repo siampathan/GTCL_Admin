@@ -79,7 +79,6 @@ export default function SocialCreate() {
 
       await axios.post(`${API_Link}social`);
       navigate('/social');
-      console.log('Submit Successful !', formateData);
     } catch (err) {
       console.error('Got an Error !', err);
     }

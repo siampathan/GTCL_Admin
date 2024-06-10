@@ -57,7 +57,6 @@ export default function TeachersCreateView() {
         },
       });
       navigate('/teachers');
-      console.log('Submission Successfull!');
     } catch (err) {
       console.error('Error Submitting form: ', err.message);
     }

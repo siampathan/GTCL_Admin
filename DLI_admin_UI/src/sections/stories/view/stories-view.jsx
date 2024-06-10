@@ -27,7 +27,6 @@ export default function StoriesView() {
   const getItems = async () => {
     const response = await axios.get(`${API_Link}stories/items`);
     setItems(response.data);
-    console.log(response.data);
   };
 
   const deleteItems = async (itemId) => {

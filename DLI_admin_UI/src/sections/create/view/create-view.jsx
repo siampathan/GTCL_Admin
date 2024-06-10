@@ -49,6 +49,7 @@ export default function CreateView() {
   const [menu, setMenu] = useState('');
   const [slug, setSlug] = useState('');
   const [active, setActive] = useState('');
+  const [parent, setParent] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -57,6 +58,7 @@ export default function CreateView() {
     try {
       const postData = {
         menu,
+        parent,
         slug,
         active,
       };
@@ -88,6 +90,20 @@ export default function CreateView() {
             margin="normal"
           />
 
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Parent</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={parent}
+              label="Parent"
+              onChange={(e) => setParent(e.target.value)}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
+            </Select>
+          </FormControl>
+
           <TextField
             label="Slug"
             type="text"
@@ -99,12 +115,12 @@ export default function CreateView() {
           />
 
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">ACtive</InputLabel>
+            <InputLabel id="demo-simple-select-label">Active</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={active}
-              label="Age"
+              label="Active"
               onChange={(e) => setActive(e.target.value)}
             >
               <MenuItem value={1}>Active</MenuItem>

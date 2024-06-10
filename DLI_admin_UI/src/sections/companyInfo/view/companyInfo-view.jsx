@@ -21,14 +21,26 @@ import { API_Link } from 'src/components/api/api';
 
 export default function CompanyInfoView() {
   const [items, setItems] = useState([]);
+  // const [menus, setMenus] = useState([]);
+
   useEffect(() => {
     getItems();
+    // getMenus();
   }, []);
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}jobs`);
     setItems(response.data.rows);
   };
+
+  // const getMenus = async () => {
+  //   const response = await axios.get(`${API_Link}menu`);
+  //   const menuData = response.data.reduce((acc, menu) => {
+  //     acc[menu.id] = menu.menu;
+  //     return acc;
+  //   }, {});
+  //   setMenus(menuData);
+  // };
 
   const deleteItems = async (itemId) => {
     try {
@@ -58,7 +70,7 @@ export default function CompanyInfoView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Menu</TableCell>
+              {/* <TableCell>Menu</TableCell> */}
               <TableCell>Title</TableCell>
               <TableCell>Job List</TableCell>
               <TableCell>Image</TableCell>
@@ -68,7 +80,7 @@ export default function CompanyInfoView() {
           <TableBody>
             {items.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.menu} </TableCell>
+                {/* <TableCell> {menus[item.menu] || item.menu} </TableCell> */}
                 <TableCell>{item.title}</TableCell>
                 <TableCell>{item.job_list}</TableCell>
                 {/* <TableCell>

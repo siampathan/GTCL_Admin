@@ -87,7 +87,7 @@ export default function FaqUpdateView() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      navigate('/faq');
+      navigate('/license');
     } catch (err) {
       console.error('Get an Error ', err);
     }
@@ -100,7 +100,7 @@ export default function FaqUpdateView() {
           <Typography variant="h3" gutterBottom>
             Update License Info
           </Typography>
-          <FormControl fullWidth>
+          <FormControl>
             <InputLabel id="demo-simple-select-label">Menu</InputLabel>
             <Select
               labelId="demo-simple-select-label"

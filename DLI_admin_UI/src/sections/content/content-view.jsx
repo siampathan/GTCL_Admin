@@ -22,15 +22,26 @@ import { API_Link } from 'src/components/api/api';
 
 export default function AboutView() {
   const [items, setItems] = useState([]);
+  // const [menus, setMenus] = useState([]);
 
   useEffect(() => {
     getItems();
+    // getMenus();
   }, []);
 
   const getItems = async () => {
     const response = await axios.get(`${API_Link}about`);
     setItems(response.data);
   };
+
+  // const getMenus = async () => {
+  //   const response = await axios.get(`${API_Link}menu`);
+  //   const menuData = response.data.reduce((acc, menu) => {
+  //     acc[menu.id] = menu.menu;
+  //     return acc;
+  //   }, {});
+  //   setMenus(menuData);
+  // };
 
   const deleteItems = async (itemId) => {
     try {
@@ -60,7 +71,7 @@ export default function AboutView() {
         <Table sx={{ boxShadow: 3, borderRadius: '15px' }}>
           <TableHead>
             <TableRow>
-              <TableCell>Menu</TableCell>
+              {/* <TableCell>Menu</TableCell> */}
               <TableCell>Title</TableCell>
               <TableCell>Sub Title</TableCell>
               <TableCell>Description</TableCell>
@@ -71,7 +82,7 @@ export default function AboutView() {
           <TableBody>
             {items?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell> {item.menu} </TableCell>
+                {/* <TableCell> {menus[item.menu] || item.menu} </TableCell> */}
                 <TableCell>{item.title}</TableCell>
                 <TableCell> {item.designation} </TableCell>
                 <TableCell>{item.description}</TableCell>

@@ -83,7 +83,6 @@ export default function GalleryCreateView() {
         },
       });
       navigate('/gallery');
-      console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
     }

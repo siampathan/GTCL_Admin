@@ -86,7 +86,6 @@ export default function CompanyInfoCreate() {
         },
       });
       navigate('/job');
-      console.log('Submit Successful !');
     } catch (err) {
       console.error('Got an Error !', err);
     }
