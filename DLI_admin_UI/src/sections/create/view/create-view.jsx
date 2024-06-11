@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
 import { styled } from '@mui/system';
@@ -50,7 +50,22 @@ export default function CreateView() {
   const [slug, setSlug] = useState('');
   const [active, setActive] = useState('');
   const [parent, setParent] = useState('');
+  const [menuItems, setMenuItems] = useState([]);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getMenu();
+  }, []);
+
+  const getMenu = async () => {
+    try {
+      const response = await axios.get(`${API_Link}menu`);
+      setMenuItems(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +79,7 @@ export default function CreateView() {
       };
 
       await axios.post(`${API_Link}menu`, postData);
-      toast.success('Item Create Successfully !');
+      toast.success('Item Created Successfully!');
 
       navigate('/menu');
     } catch (error) {
@@ -91,16 +106,19 @@ export default function CreateView() {
           />
 
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Parent</InputLabel>
+            <InputLabel id="demo-simple-select-label">Parent Menu</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={parent}
-              label="Parent"
+              label="Menu"
               onChange={(e) => setParent(e.target.value)}
             >
-              <MenuItem value={1}>Yes</MenuItem>
-              <MenuItem value={0}>No</MenuItem>
+              <MenuItem value="Parent">Parent</MenuItem>
+              {menuItems.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.menu}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 

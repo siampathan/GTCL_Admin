@@ -121,16 +121,20 @@ export default function UpdateView() {
           </FormControl>
 
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Parent</InputLabel>
+            <InputLabel id="demo-simple-select-label">Parent Menu</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={values.parent}
-              label="Status"
+              label="Menu"
               onChange={(e) => setValues({ ...values, parent: e.target.value })}
             >
-              <MenuItem value={1}>Yes</MenuItem>
-              <MenuItem value={0}>No</MenuItem>
+              <MenuItem value="Parent">Parent</MenuItem>
+              {menuItems.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.menu}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 

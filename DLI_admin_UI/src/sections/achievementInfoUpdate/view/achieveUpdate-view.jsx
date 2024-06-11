@@ -98,7 +98,7 @@ export default function AchieveInfoUpdate() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Update Achieve Info
+            Update Achievement Info
           </Typography>
 
           <FormControl fullWidth>

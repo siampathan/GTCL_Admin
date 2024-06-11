@@ -73,7 +73,7 @@ export default function PostPage() {
             {items?.map(({ id, menu, parent, slug, active }) => (
               <TableRow key={id}>
                 <TableCell> {menu} </TableCell>
-                <TableCell> {parent === 1 ? 'Yes' : 'No'} </TableCell>
+                <TableCell> {parent} </TableCell>
                 <TableCell> {slug} </TableCell>
                 <TableCell> {active === 1 ? 'Active' : 'Inactive'} </TableCell>
                 <TableCell>

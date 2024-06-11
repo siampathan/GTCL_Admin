@@ -97,7 +97,7 @@ export default function AchieveCreateView() {
       <StyledPaper sx={paperStyles}>
         <StyledForm sx={formStyles} onSubmit={handleSubmit}>
           <Typography variant="h3" gutterBottom>
-            Create Achieve Info
+            Create Achievement Info
           </Typography>
 
           <FormControl fullWidth>
